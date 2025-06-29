@@ -1,6 +1,7 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import { Gamepad2, Smartphone, Monitor, Headphones, Code, Palette } from 'lucide-react';
 
 const Services = () => {
@@ -91,6 +92,9 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      <Contact />
+      <Footer />
     </div>
   );
 };

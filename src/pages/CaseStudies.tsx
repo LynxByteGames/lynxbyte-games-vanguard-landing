@@ -1,7 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import { ExternalLink, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -160,6 +161,9 @@ const CaseStudies = () => {
           </div>
         </div>
       </section>
+
+      <Contact />
+      <Footer />
     </div>
   );
 };
