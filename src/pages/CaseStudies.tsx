@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { ExternalLink, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button';
 const CaseStudies = () => {
   const projects = [
     {
+      slug: 'digital-dragons-awards',
       title: 'Digital Dragons Awards Gala',
       category: 'Event Gaming Platform',
       description: 'Interactive gaming platform for the prestigious Digital Dragons Awards ceremony, featuring real-time voting and engagement systems.',
@@ -20,6 +22,7 @@ const CaseStudies = () => {
       results: ['500K+ participants', '95% uptime', '40% engagement increase']
     },
     {
+      slug: 'apocalypse-survival',
       title: 'Apocalypse Survival',
       category: 'Action RPG',
       description: 'Post-apocalyptic survival game with immersive gameplay mechanics and stunning visual effects.',
@@ -33,6 +36,7 @@ const CaseStudies = () => {
       results: ['1M+ downloads', '4.8★ rating', 'Steam Top 10']
     },
     {
+      slug: 'mobile-racing-championship',
       title: 'Mobile Racing Championship',
       category: 'Racing Game',
       description: 'High-performance mobile racing game with realistic physics and multiplayer functionality.',
@@ -145,9 +149,11 @@ const CaseStudies = () => {
                     </ul>
                   </div>
 
-                  <Button className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
-                    View Full Case Study
-                  </Button>
+                  <Link to={`/case-studies/${project.slug}`}>
+                    <Button className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+                      View Full Case Study
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}
