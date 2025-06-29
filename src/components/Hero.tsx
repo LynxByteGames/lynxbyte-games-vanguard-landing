@@ -26,7 +26,16 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-lynx-dark via-lynx-darker to-lynx-dark relative overflow-hidden">
+    <section className="min-h-screen relative overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/lovable-uploads/35bbf63f-186e-47b2-a8c3-0f4a531dd205.png)'
+        }}
+      />
+      <div className="absolute inset-0 bg-lynx-dark/80"></div>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-64 h-64 bg-lynx-pink rounded-full blur-3xl"></div>
