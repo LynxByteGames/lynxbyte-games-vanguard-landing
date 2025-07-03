@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -133,7 +134,7 @@ const BlogPost = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-black mb-6 leading-tight text-white">
               {post.title}
             </h1>
             
@@ -161,11 +162,13 @@ const BlogPost = () => {
             </div>
           </header>
 
-          {/* Article Content */}
-          <div 
-            className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-gray-300 prose-p:leading-relaxed prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {/* Article Content - White background with black text */}
+          <div className="bg-white rounded-2xl p-8 lg:p-12 mb-12">
+            <div 
+              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </div>
 
           {/* Article Footer */}
           <footer className="mt-16 pt-8 border-t border-lynx-gray">
