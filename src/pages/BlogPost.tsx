@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -108,6 +108,7 @@ const BlogPost = () => {
             </Link>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -180,6 +181,8 @@ const BlogPost = () => {
           </footer>
         </div>
       </article>
+      
+      <Footer />
     </div>
   );
 };
