@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Gamepad2, Smartphone, Monitor, VrHeadset, Code, Palette } from 'lucide-react';
+import { Gamepad2, Smartphone, Monitor, Headset, Code, Palette } from 'lucide-react';
 
 const ServicesList = () => {
   const services = [
@@ -20,7 +19,7 @@ const ServicesList = () => {
       description: 'High-performance games for PC, PlayStation, Xbox, and Nintendo platforms.'
     },
     {
-      icon: <VrHeadset className="w-12 h-12 text-lynx-pink" />,
+      icon: <Headset className="w-12 h-12 text-lynx-pink" />,
       title: 'VR/AR Games',
       description: 'Immersive virtual and augmented reality gaming experiences.'
     },
