@@ -9,6 +9,16 @@ export default {
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
+	safelist: [
+		// Blog theme combinations
+		'bg-white text-black',
+		'bg-black text-white',
+		// Accent colors
+		'bg-lynx-pink',
+		'hover:bg-lynx-pink-hover',
+		'text-lynx-pink',
+		'hover:text-lynx-pink-hover',
+	],
 	prefix: "",
 	theme: {
 		container: {

@@ -1,8 +1,8 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import { MapPin, Clock, DollarSign, Users, Coffee, Gamepad2, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Footer from '@/components/Footer';
 
 const Careers = () => {
   const jobOpenings = [
@@ -60,8 +60,8 @@ const Careers = () => {
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      title: 'Health & Wellness',
-      description: 'Comprehensive health insurance and wellness programs.'
+      title: 'No-crunch culture',
+      description: 'We believe in a healthy work-life balance and we are not a crunch studio.'
     },
     {
       icon: <Gamepad2 className="w-6 h-6" />,
@@ -71,7 +71,7 @@ const Careers = () => {
     {
       icon: <Star className="w-6 h-6" />,
       title: 'Professional Growth',
-      description: 'Learning budget, conferences, and skill development opportunities.'
+      description: 'Learning from the best, conferences, and skill development opportunities.'
     },
     {
       icon: <Users className="w-6 h-6" />,
@@ -81,7 +81,7 @@ const Careers = () => {
     {
       icon: <DollarSign className="w-6 h-6" />,
       title: 'Competitive Package',
-      description: 'Attractive salary, bonuses, and equity participation.'
+      description: 'Attractive salary and bonuses.'
     }
   ];
 
@@ -93,11 +93,11 @@ const Careers = () => {
         <div className="container-width">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl lg:text-6xl font-black mb-6">
-              JOIN OUR <span className="gradient-text">TEAM</span>
+              JOIN OUR <span className="text-lynx-pink">TEAM</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Build the future of gaming with passionate developers, designers, and creators 
-              who are shaping extraordinary gaming experiences.
+              Build the future of consoles gaming with passionate developers, designers, and creators 
+              who are shaping extraordinary gaming experiences for the next generation of consoles.
             </p>
           </div>
 
@@ -107,7 +107,7 @@ const Careers = () => {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                    Why Work at <span className="gradient-text">LYNXBYTE?</span>
+                    Why Work at <span className="text-lynx-pink">LYNXBYTE?</span>
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed mb-8">
                     We're more than just a game development studio. We're a community of passionate creators 
@@ -116,20 +116,22 @@ const Careers = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-4 bg-lynx-dark rounded-xl">
                       <div className="text-2xl font-bold text-lynx-pink">50+</div>
-                      <div className="text-sm text-gray-400">Team Members</div>
+                      <div className="text-sm text-gray-400">Games that we worked on</div>
                     </div>
                     <div className="text-center p-4 bg-lynx-dark rounded-xl">
                       <div className="text-2xl font-bold text-lynx-pink">8+</div>
-                      <div className="text-sm text-gray-400">Years Experience</div>
+                      <div className="text-sm text-gray-400">Years experience of our team</div>
                     </div>
                   </div>
                 </div>
                 <div className="relative">
+                  {/* Desktop only: original image, no resizing */}
                   <img 
-                    src="/lovable-uploads/f880535a-b026-4999-ba66-b041fd37e055.png" 
+                    src="/lovable-uploads/image.png" 
                     alt="Our Team"
-                    className="w-full h-64 lg:h-80 object-cover rounded-2xl"
-                  />
+                    className="hidden lg:block rounded-2xl"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />                  
                 </div>
               </div>
             </div>
@@ -138,7 +140,7 @@ const Careers = () => {
           {/* Benefits */}
           <div className="mb-16 animate-fade-in">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">
-              Perks & <span className="gradient-text">Benefits</span>
+              Perks & <span className="text-lynx-pink">Benefits</span>
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.map((benefit, index) => (
@@ -164,7 +166,7 @@ const Careers = () => {
           {/* Job Openings */}
           <div className="animate-fade-in">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">
-              Open <span className="gradient-text">Positions</span>
+              Open <span className="text-lynx-pink">Positions</span>
             </h2>
             <div className="space-y-6">
               {jobOpenings.map((job, index) => (
@@ -243,12 +245,13 @@ const Careers = () => {
                 Send us your resume and let's discuss how you can contribute to our mission.
               </p>
               <Button className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
-                Send Your Resume
+                Send Your Resume to <a href="mailto:careers@lynxbytegames.eu" className="text-white">careers@lynxbytegames.eu</a>
               </Button>
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

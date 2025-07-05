@@ -1,12 +1,13 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Contact from '@/components/Contact';
 import { Calendar, User, ArrowRight, TrendingUp, Lightbulb, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Insights = () => {
+
   const articles = [
     {
       category: 'Industry Trends',
@@ -65,7 +66,7 @@ const Insights = () => {
         <div className="container-width">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl lg:text-6xl font-black mb-6">
-              INDUSTRY <span className="gradient-text">INSIGHTS</span>
+              INDUSTRY <span className="text-lynx-pink">INSIGHTS</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Stay ahead of the curve with our latest insights, trends, and expert analysis 
@@ -126,6 +127,8 @@ const Insights = () => {
               </div>
             </Link>
           </div>
+
+      
 
           {/* Regular Articles Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -206,6 +209,8 @@ const Insights = () => {
           </div>
         </div>
       </section>
+
+      <Contact />
       
       <Footer />
     </div>
