@@ -2,26 +2,25 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import CompanyLogos from '@/components/CompanyLogos';
 import AboutUs from '@/components/AboutUs';
 import ServicesList from '@/components/ServicesList';
-import SuccessStories from '@/components/SuccessStories';
+import BlogPosts from '@/components/BlogPosts';
 import Stats from '@/components/Stats';
 import USP from '@/components/USP';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import LogoCarousel from '@/components/LogoCarousel';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-lynx-dark">
       <Navbar />
       <Hero />
-      <CompanyLogos />
+      <LogoCarousel/>
       <AboutUs />
       <ServicesList />
-      <SuccessStories />
-      <Stats />
       <USP />
+      <BlogPosts />
       <Contact />
       <Footer />
     </div>

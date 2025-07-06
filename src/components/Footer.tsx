@@ -1,7 +1,6 @@
 
-import React from 'react';
+import { Gamepad2, Linkedin, Mail, MapPin, Receipt } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Gamepad2, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -11,23 +10,27 @@ const Footer = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-2">
-                <Gamepad2 className="w-8 h-8 text-lynx-pink" />
-                <span className="text-2xl font-black">LYNXBYTE</span>
-              </div>
+              <Link to="/" className="flex items-center space-x-4 group">
+                <img 
+                  src="/lovable-uploads/SYGNET-białe.png" 
+                  alt="Lynxbyte Games Symbol" 
+                  className="h-16 w-auto"
+                />
+                <img 
+                  src="/lovable-uploads/NAPISY-białe.png" 
+                  alt="Lynxbyte Games Text" 
+                  className="h-8 w-auto"
+                />
+              </Link>
               <p className="text-gray-300 leading-relaxed">
                 Leading game development studio creating innovative and engaging gaming experiences across multiple platforms.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-lynx-pink transition-colors">
-                  <Github className="w-5 h-5" />
-                </a>
+                
                 <a href="#" className="text-gray-400 hover:text-lynx-pink transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-lynx-pink transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
+                
               </div>
             </div>
 
@@ -45,14 +48,14 @@ const Footer = () => {
                     Services
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/case-studies" className="text-gray-300 hover:text-lynx-pink transition-colors">
                     Case Studies
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/insights" className="text-gray-300 hover:text-lynx-pink transition-colors">
-                    Insights
+                    Insights - Blog 
                   </Link>
                 </li>
                 <li>
@@ -82,18 +85,21 @@ const Footer = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-lynx-pink" />
-                  <span className="text-gray-300">hello@lynxbyte.com</span>
+                  <span className="text-gray-300">contact@lynxbytegames.eu</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-lynx-pink" />
-                  <span className="text-gray-300">+48 123 456 789</span>
+                  <Receipt className="w-5 h-5 text-lynx-pink" />
+                  <span className="text-gray-300">NIP/EU VAT ID: PL6793324030</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-lynx-pink mt-1" />
                   <span className="text-gray-300">
-                    Warsaw, Poland<br />
-                    Krakowskie Przedmieście 1
+                    Carcow, Poland<br />
+                    Zamknięta 10/1.5 30-544 Kraków
                   </span>
+                </div>
+                <div className="flex items-start space-x-3 text-gray-300 text-xs">
+                  LYNXBYTE GAMES PSA seated in Kraków, Poland, at Zamknięta 10/1.5, 30-544 Kraków, entered in the Register of Entrepreneurs of the National Court Register, kept by the District Court of Kraków-Podgórze in Kraków, IV Commercial Division of the National Court Register under the number 0001158887, with share capital of PLN 25,000.00, with tax identification number (NIP) PL6793324030, and statistical number (REGON) 541035028.
                 </div>
               </div>
             </div>
@@ -103,7 +109,7 @@ const Footer = () => {
           <div className="border-t border-lynx-dark mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-gray-400 text-sm">
-                © 2024 LYNXBYTE GAMES. All rights reserved.
+                © 2025 LYNXBYTE GAMES. All rights reserved.
               </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-gray-400 hover:text-lynx-pink text-sm transition-colors">

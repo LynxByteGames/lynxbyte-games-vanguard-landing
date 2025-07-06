@@ -12,15 +12,18 @@ import gamePerformance from '@/blogposts/optimizing-game-performance';
 const BlogPosts = () => {
   const navigate = useNavigate();
   
+  // Sort blog posts by date (most recent first) and take only the 2 most recent
   const blogPosts = [
     buildingNarratives,
     futureGaming,
     mobileTrends,
     gamePerformance
-  ];
+  ]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
   const handleBlogPostClick = (slug: string) => {
-    navigate(`/blog/${slug}`);
+    navigate(`/insights/${slug}`);
   };
 
   return (

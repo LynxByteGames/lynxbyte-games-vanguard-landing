@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
+import ScrollToTop from "./components/ScrollToTop";
 import { toast } from "sonner";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />

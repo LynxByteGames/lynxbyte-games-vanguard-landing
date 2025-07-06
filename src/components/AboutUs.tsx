@@ -8,7 +8,7 @@ const AboutUs = () => {
         <div className="container-width">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl lg:text-5xl font-black mb-8">
-              WHO WE <span className="gradient-text">ARE</span>
+              WHO WE <span className="text-lynx-pink">ARE</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               LYNXBYTE GAMES is a leading game development studio with over 8 years of experience 
