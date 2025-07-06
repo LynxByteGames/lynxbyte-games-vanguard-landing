@@ -86,29 +86,27 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-lynx-dark py-20 section-padding">
+    <section id="contact" className="bg-lynx-dark py-12 md:py-20 section-padding">
       <div className="container-width">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Side - Text Content */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
             <div>
-
-              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 leading-tight">
                 Ready to join the <br />
                 <span className="text-lynx-pink">winning side?</span>
               </h2>
-              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
-                                Console market is <span className="text-lynx-pink">$86.7B and growing</span>
-
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 leading-tight">
+                Console market is <span className="text-lynx-pink">$86.7B and growing</span>
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
                 The only question is: <span className="text-lynx-pink">when do we start?</span>
               </p>
             </div>
 
             {/* CEO Info */}
-            <div className="flex items-center space-x-6">
-              <div className="w-28 h-28 rounded-full overflow-hidden">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden flex-shrink-0">
                 <img 
                   src="/lovable-uploads/bl_black.png" 
                   alt="CEO"
@@ -116,18 +114,18 @@ const Contact = () => {
                 />
               </div>
               <div className="space-y-1">
-                <h3 className="text-2xl font-bold text-white">Bartosz Ludera</h3>
-                <p className="text-lynx-pink text-lg">Founder & CEO</p>
-                <p className="text-gray-400">bartosz.ludera@lynxbytegames.eu</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white">Bartosz Ludera</h3>
+                <p className="text-lynx-pink text-base sm:text-lg">Founder & CEO</p>
+                <p className="text-gray-400 text-sm sm:text-base break-all">bartosz.ludera@lynxbytegames.eu</p>
               </div>
             </div>
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="bg-lynx-gray p-8 rounded-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6" ref={formRef}>
+          <div className="bg-lynx-gray p-4 sm:p-6 md:p-8 rounded-2xl order-1 lg:order-2">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" ref={formRef}>
               {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     First Name
@@ -212,10 +210,10 @@ const Contact = () => {
                     id="privacy"
                     checked={formData.acceptPrivacy}
                     onCheckedChange={(checked) => handleCheckboxChange('acceptPrivacy', checked as boolean)}
-                    className="mt-1"
+                    className="mt-1 flex-shrink-0"
                     required
                   />
-                  <label htmlFor="privacy" className="text-sm text-gray-300 leading-relaxed">
+                  <label htmlFor="privacy" className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                     *I have read and accept the Privacy Policy and Terms & Conditions.
                   </label>
                 </div>
@@ -225,9 +223,9 @@ const Contact = () => {
                     id="marketing"
                     checked={formData.acceptMarketing}
                     onCheckedChange={(checked) => handleCheckboxChange('acceptMarketing', checked as boolean)}
-                    className="mt-1"
+                    className="mt-1 flex-shrink-0"
                   />
-                  <label htmlFor="marketing" className="text-sm text-gray-300 leading-relaxed">
+                  <label htmlFor="marketing" className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                     I agree to receive information about products, services, promotions and news from LYNXBYTE GAMES PSA, based in Poland and its related entities, including other companies from the gaming group, at the provided email address.
                   </label>
                 </div>
@@ -237,7 +235,7 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-lynx-pink hover:bg-lynx-pink-hover text-white font-semibold py-3 rounded-full text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-lynx-pink hover:bg-lynx-pink-hover text-white font-semibold py-3 rounded-full text-base md:text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Sending...' : 'Send message'}
               </Button>
