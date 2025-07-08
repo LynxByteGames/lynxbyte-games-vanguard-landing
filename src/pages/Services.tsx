@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -8,6 +9,7 @@ import { Gamepad2, Smartphone, Monitor, Headphones, Code, Palette, X, ArrowRight
 const Services = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [searchParams] = useSearchParams();
 
   const services = [
     {
@@ -160,6 +162,17 @@ Design services encompass:
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
+  // Handle URL parameter for auto-opening service modal
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam !== null) {
+      const serviceIndex = parseInt(serviceParam);
+      if (serviceIndex >= 0 && serviceIndex < services.length) {
+        setSelectedService(serviceIndex);
+      }
+    }
+  }, [searchParams]);
+
   return (
     <div className="min-h-screen bg-lynx-dark">
       <Navbar />
@@ -246,7 +259,7 @@ Design services encompass:
                   </div>
                   
                   <h3 className="text-3xl font-bold text-white mb-6">
-                    Our <span className="text-lynx-pink">Quality Guarantee</span>
+                    OUR <span className="text-lynx-pink">QUALITY GUARANTEE</span>
                   </h3>
                   
                   <p className="text-gray-300 text-lg leading-relaxed mb-6">
