@@ -14,20 +14,99 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { toast } from 'sonner';
 
 
 const Index = () => {
   const [showForm, setShowForm] = useState(false);
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Function to send data to Discord webhook
+  const sendToDiscord = async (email: string) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1393033317586047006/6fMJG91n-5HxZA-gonKFbbqIHlbCUHg6XQaRpsesDwbMF0oogooCjahwT_n1AiWwnEbL';
+    
+    const embed = {
+      title: '📄 New Pitch Deck Download Request',
+      color: 0xff2e9a, // Lynx pink color
+      fields: [
+        {
+          name: '📧 Email',
+          value: email,
+          inline: true
+        },
+        {
+          name: '📄 Request Type',
+          value: 'Pitch Deck Download',
+          inline: true
+        },
+        {
+          name: '🌐 Source',
+          value: 'Homepage Lead Magnet',
+          inline: true
+        },
+        {
+          name: '⏰ Timestamp',
+          value: new Date().toLocaleString('pl-PL'),
+          inline: true
+        }
+      ],
+      footer: {
+        text: 'Lynxbyte Games Pitch Deck Lead Magnet'
+      },
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          embeds: [embed]
+        })
+      });
+
+      if (response.ok) {
+        console.log('Discord webhook sent successfully for pitch deck request');
+        return true;
+      } else {
+        console.error('Discord webhook failed:', response.status, response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Discord webhook error:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send the email to your backend
-    // For now, we'll just log it and show a success message
-    console.log('Email submitted:', email);
-    alert('Thank you for your interest! We will send your pitch deck shortly.');
-    setShowForm(false);
-    setEmail('');
+    
+    if (!email.trim()) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      console.log('Pitch deck request submitted:', email);
+      
+      // Send to Discord webhook
+      const discordResult = await sendToDiscord(email);
+      
+      toast.success('Thank you for your interest! We will send your pitch deck shortly.');
+      
+      setShowForm(false);
+      setEmail('');
+    } catch (error) {
+      console.error('Pitch deck request failed:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -80,10 +159,11 @@ const Index = () => {
                 </div>
                 <Button
                   type="submit"
-                  className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 w-full shadow-lg"
+                  disabled={isLoading}
+                  className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 w-full shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{boxShadow: '0 0 12px 1px #ff2e9a55'}}
                 >
-                  Send Me the Pitch Deck
+                  {isLoading ? 'Sending...' : 'Send Me the Pitch Deck'}
                 </Button>
                 <p className="text-xs text-gray-400 mt-1">
                   Yes, this is our lead magnet - we won’t spam you. We send it manually to get to know you better.

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -23,6 +23,81 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
     acceptPrivacy: false,
     acceptMarketing: false
   });
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    console.log('EmailJS initialized with key:', EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
+
+  // Function to send data to Discord webhook
+  const sendToDiscord = async (formData: any) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1393033317586047006/6fMJG91n-5HxZA-gonKFbbqIHlbCUHg6XQaRpsesDwbMF0oogooCjahwT_n1AiWwnEbL';
+    
+    const embed = {
+      title: '🎮 New Contact Form Submission',
+      color: 0xff2e9a, // Lynx pink color
+      fields: [
+        {
+          name: '👤 Name',
+          value: `${formData.firstName} ${formData.lastName}`,
+          inline: true
+        },
+        {
+          name: '📧 Email',
+          value: formData.email,
+          inline: true
+        },
+        {
+          name: '🏢 Company',
+          value: formData.company || 'Not provided',
+          inline: true
+        },
+        {
+          name: '💬 Message',
+          value: formData.message.length > 1024 ? formData.message.substring(0, 1021) + '...' : formData.message,
+          inline: false
+        },
+        {
+          name: '📢 Marketing Consent',
+          value: formData.acceptMarketing ? '✅ Yes' : '❌ No',
+          inline: true
+        },
+        {
+          name: '⏰ Timestamp',
+          value: new Date().toLocaleString('pl-PL'),
+          inline: true
+        }
+      ],
+      footer: {
+        text: 'Lynxbyte Games Contact Form'
+      },
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          embeds: [embed]
+        })
+      });
+
+      if (response.ok) {
+        console.log('Discord webhook sent successfully');
+        return true;
+      } else {
+        console.error('Discord webhook failed:', response.status, response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Discord webhook error:', error);
+      return false;
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -50,6 +125,8 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
     setIsLoading(true);
 
     try {
+      console.log('EmailJS Config:', EMAILJS_CONFIG);
+      
       // EmailJS configuration
       const templateParams = {
         to_email: EMAILJS_CONFIG.TO_EMAIL,
@@ -61,15 +138,29 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
         reply_to: formData.email
       };
 
-      const result = await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
-        templateParams,
-        EMAILJS_CONFIG.PUBLIC_KEY
-      );
+      console.log('Template Params:', templateParams);
 
-      if (result.status === 200) {
+      // Send both email and Discord notification
+      const [emailResult, discordResult] = await Promise.allSettled([
+        emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          templateParams,
+          EMAILJS_CONFIG.PUBLIC_KEY
+        ),
+        sendToDiscord(formData)
+      ]);
+
+      console.log('EmailJS Result:', emailResult);
+      console.log('Discord Result:', discordResult);
+
+      // Check if at least one method succeeded
+      const emailSuccess = emailResult.status === 'fulfilled' && emailResult.value.status === 200;
+      const discordSuccess = discordResult.status === 'fulfilled' && discordResult.value === true;
+
+      if (emailSuccess || discordSuccess) {
         toast.success('Message sent successfully! We\'ll get back to you soon.');
+        
         // Reset form
         setFormData({
           firstName: '',
@@ -80,10 +171,17 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
           acceptPrivacy: false,
           acceptMarketing: false
         });
+      } else {
+        throw new Error('Both email and Discord failed');
       }
     } catch (error) {
-      console.error('Email sending failed:', error);
-      toast.error('Failed to send message. Please try again or contact us directly.');
+      console.error('Form submission failed:', error);
+      console.error('Error details:', {
+        message: error.message,
+        status: error.status,
+        text: error.text
+      });
+      toast.error(`Failed to send message: ${error.message || 'Unknown error'}`);
     } finally {
       setIsLoading(false);
     }
