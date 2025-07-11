@@ -28,7 +28,7 @@ const Navbar = () => {
   ];
 
   const blogPosts = [
-    { name: 'Gamescome 2025 x LYNXBYTE GAMES - you can find us!', slug: 'future-of-gaming-ai-ml' },
+    { name: 'Meet LYNXBYTE GAMES at Gamescom 2025 - Let’s Connect!', slug: 'gamescom-2025' },
     { name: 'Game porting 101 - all information you need to port the game to consoles', slug: 'optimizing-game-performance' }
   ];
 

@@ -1,46 +1,49 @@
 export default {
-  slug: 'future-of-gaming-ai-ml',
-  title: 'Gamescome 2025 x LYXNBTYE GAMES - you can find us!',
+  slug: 'gamescom-2025-meet-lynxbyte',
+  title: 'Gamescom 2025 x LYNXBYTE GAMES - Let’s Connect in Cologne',
   content: `
     <header>
-      <h2>Introduction</h2>
-      <p>The biggest gaming event in Germany is coming up, and we'll be there. Let's have a chat in Cologne from July 20th to 22nd.</p>
+      <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">We're attending Gamescom 2025</h1>
+      <p style="font-size: 1.25rem; color: #444;">LYNXBYTE GAMES will be at Gamescom in Cologne from <strong>July 20th to 22nd</strong>. It's the perfect opportunity to connect, collaborate, and exchange insights in person.</p>
+      <img src="/lovable-uploads/blog_2.jpeg" alt="LYNXBYTE Gamescom Booth" style="width: 100%; border-radius: 1rem; margin-top: 1rem;" />
     </header>
+    
     <section>
-      <h2>What to Expect at Gamescom 2025</h2>
-      <p>Gamescom is the world's largest event for computer and video games and Europe's largest business platform for the games industry. This year, Lynxbyte Games will be present to showcase our latest projects and connect with fellow developers, publishers, and gaming enthusiasts.</p>
-      <ul>
-        <li><strong>Networking Opportunities:</strong> Connect with industry leaders and potential partners</li>
-        <li><strong>Showcase Our Work:</strong> See our latest game development projects and success stories</li>
-        <li><strong>Industry Insights:</strong> Learn about the latest trends and technologies in game development</li>
+      <h2 style="font-size: 2rem; margin-top: 2rem;">Why Meet Us?</h2>
+      <ul style="font-size: 1.1rem; line-height: 1.6;">
+        <li><strong>Real Projects:</strong> Preview our in-development titles and prototypes</li>
+        <li><strong>Open to Collaboration:</strong> We're actively seeking new partnerships</li>
+        <li><strong>Direct Talks:</strong> Discuss trends, tools, and how we work across platforms</li>
       </ul>
     </section>
+
     <section>
-      <h2>Why Visit Our Booth</h2>
-      <p>At Lynxbyte Games, we specialize in creating engaging gaming experiences across multiple platforms. Our team of experienced developers and designers will be available to discuss potential collaborations, share insights about our development process, and explore new opportunities in the gaming industry.</p>
-      <h3>What We'll Be Showcasing</h3>
-      <ul>
-        <li>Latest game development projects and prototypes</li>
-        <li>Our development methodology and best practices</li>
-        <li>Partnership opportunities and collaboration possibilities</li>
+      <h2 style="font-size: 2rem; margin-top: 2rem;">Book a Meeting</h2>
+      <p style="font-size: 1.15rem;">If you're attending Gamescom, get in touch to schedule a meeting or simply drop by our booth. We'll be happy to chat.</p>
+      <ul style="font-size: 1.1rem;">
+        <li><strong>Bartosz Ludera:</strong> <a href="mailto:bartosz.ludera@lynxbytegames.eu">bartosz.ludera@lynxbytegames.eu</a></li>
+        <li><strong>Krystian Młodziejewski:</strong> <a href="mailto:krystian.mlodziejewski@lynxbytegames.eu">krystian.mlodziejewski@lynxbytegames.eu</a></li>
       </ul>
+      <img src="/lovable-uploads/team_photo_lynxbyte.jpeg" alt="LYNXBYTE Team" style="width: 100%; border-radius: 1rem; margin-top: 1rem;" />
     </section>
+
     <section>
-      <h2>Event Details</h2>
-      <p>Gamescom 2025 will take place from July 20th to 22nd in Cologne, Germany. The event brings together developers, publishers, and gaming enthusiasts from around the world, making it the perfect platform to showcase our work and build new relationships.</p>
+      <h2 style="font-size: 2rem; margin-top: 2rem;">Event Info</h2>
+      <p style="font-size: 1.15rem;">
+        <strong>Date:</strong> July 20–22, 2025<br/>
+        <strong>Location:</strong> Cologne, Germany<br/>
+        <strong>Event:</strong> Gamescom 2025
+      </p>
     </section>
-    <section>
-      <h2>Get in Touch</h2>
-      <p>If you're planning to attend Gamescom 2025, we'd love to meet you! Reach out to us to schedule a meeting or just drop by our booth to say hello. Let's discuss how we can work together to create amazing gaming experiences.</p>
-    </section>
+
     <footer>
-      <h3>Conclusion</h3>
-      <p>Gamescom 2025 represents an exciting opportunity for Lynxbyte Games to connect with the global gaming community. We're looking forward to sharing our passion for game development and exploring new possibilities with fellow industry professionals.</p>
+      <h3 style="font-size: 1.75rem; margin-top: 2rem;">See You There</h3>
+      <p style="font-size: 1.1rem;">Gamescom is the most important gaming industry event in Europe. We'll be there, ready to talk games, tech, and business. Looking forward to meeting you in person.</p>
     </footer>
   `,
-  author: 'Krystian Młodziejewski',
-  date: 'Jul 2, 2025',
+  author: 'Bartosz Ludera',
+  date: 'Jul 11, 2025',
   readTime: '2 min read',
-  image: '/lovable-uploads/blog_2.jpeg',
-  category: 'Industry News'
-}; 
+  image: '/lovable-uploads/blog_gamescom2025.jpeg',
+  category: 'Events & Networking'
+};

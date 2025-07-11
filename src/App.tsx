@@ -11,6 +11,7 @@ import Insights from "./pages/Insights";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
+import PitchDeck from "./pages/PitchDeck";
 import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import ScrollToTop from "./components/ScrollToTop";
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="/insights/:slug" element={<BlogPost />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/pitchdeck" element={<PitchDeck />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
