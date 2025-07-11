@@ -8,8 +8,6 @@ import { Button } from '@/components/ui/button';
 import SimpleThemeToggle from '@/components/SimpleThemeToggle';
 import futureOfGaming from '@/blogposts/future-of-gaming-ai-ml';
 import optimizingPerformance from '@/blogposts/optimizing-game-performance';
-import engagingNarratives from '@/blogposts/building-engaging-narratives';
-import mobileGamingTrends from '@/blogposts/mobile-gaming-market-trends';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -34,8 +32,6 @@ const BlogPost = () => {
   const blogPosts = {
     [futureOfGaming.slug]: futureOfGaming,
     [optimizingPerformance.slug]: optimizingPerformance,
-    [engagingNarratives.slug]: engagingNarratives,
-    [mobileGamingTrends.slug]: mobileGamingTrends,
   };
 
   const post = slug ? blogPosts[slug as keyof typeof blogPosts] : null;

@@ -6,52 +6,34 @@ import { Calendar, User, ArrowRight, TrendingUp, Lightbulb, Target } from 'lucid
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
+// Import blog posts
+import futureGaming from '@/blogposts/future-of-gaming-ai-ml';
+import gamePerformance from '@/blogposts/optimizing-game-performance';
+
 const Insights = () => {
 
   const articles = [
     {
-      category: 'Industry Trends',
-      title: 'The Future of Gaming: AI and Machine Learning in Game Development',
-      excerpt: 'Exploring how artificial intelligence is revolutionizing game development, from procedural content generation to intelligent NPCs.',
-      author: 'Sarah Johnson',
-      date: 'Dec 15, 2024',
-      readTime: '8 min read',
-      image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800',
+      category: futureGaming.category,
+      title: futureGaming.title,
+      excerpt: futureGaming.content.replace(/<[^>]*>/g, '').substring(0, 200) + '...',
+      author: futureGaming.author,
+      date: futureGaming.date,
+      readTime: futureGaming.readTime,
+      image: futureGaming.image,
       icon: <TrendingUp className="w-5 h-5" />,
-      slug: 'future-of-gaming-ai-ml'
+      slug: futureGaming.slug
     },
     {
-      category: 'Development Tips',
-      title: 'Optimizing Game Performance Across Multiple Platforms',
-      excerpt: 'Best practices and techniques for ensuring your game runs smoothly on PC, console, and mobile devices.',
-      author: 'Mike Chen',
-      date: 'Dec 10, 2024',
-      readTime: '12 min read',
-      image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800',
+      category: gamePerformance.category,
+      title: gamePerformance.title,
+      excerpt: gamePerformance.content.replace(/<[^>]*>/g, '').substring(0, 200) + '...',
+      author: gamePerformance.author,
+      date: gamePerformance.date,
+      readTime: gamePerformance.readTime,
+      image: gamePerformance.image,
       icon: <Target className="w-5 h-5" />,
-      slug: 'optimizing-game-performance'
-    },
-    {
-      category: 'Creative Process',
-      title: 'Building Engaging Game Narratives That Captivate Players',
-      excerpt: 'How to craft compelling storylines and character development that keep players invested in your game world.',
-      author: 'Emma Rodriguez',
-      date: 'Dec 5, 2024',
-      readTime: '10 min read',
-      image: 'https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800',
-      icon: <Lightbulb className="w-5 h-5" />,
-      slug: 'building-engaging-narratives'
-    },
-    {
-      category: 'Market Analysis',
-      title: 'Mobile Gaming Market Trends and Monetization Strategies',
-      excerpt: 'Understanding the mobile gaming landscape and effective strategies for game monetization in 2024.',
-      author: 'David Park',
-      date: 'Nov 28, 2024',
-      readTime: '15 min read',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800',
-      icon: <TrendingUp className="w-5 h-5" />,
-      slug: 'mobile-gaming-market-trends'
+      slug: gamePerformance.slug
     }
   ];
 

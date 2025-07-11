@@ -7,49 +7,50 @@ import Footer from '@/components/Footer';
 const Careers = () => {
   const jobOpenings = [
     {
-      title: 'Senior Game Developer',
+      title: 'General Game Developer',
       department: 'Engineering',
-      location: 'Remote / Warsaw',
+      location: 'Remote / Kraków',
       type: 'Full-time',
-      salary: '$80,000 - $120,000',
-      experience: '5+ years',
-      description: 'Join our core development team to create next-generation gaming experiences using Unity and Unreal Engine.',
-      requirements: ['5+ years game development experience', 'Proficiency in C# or C++', 'Unity/Unreal Engine expertise', 'Multiplayer systems knowledge'],
-      posted: '2 days ago'
-    },
-    {
-      title: 'UI/UX Designer',
-      department: 'Design',
-      location: 'Remote / Krakow',
-      type: 'Full-time',
-      salary: '$60,000 - $90,000',
+      salary: '-',
       experience: '3+ years',
-      description: 'Design intuitive and engaging user interfaces for mobile and PC gaming platforms.',
-      requirements: ['3+ years UI/UX design experience', 'Gaming industry experience preferred', 'Figma/Adobe Creative Suite', 'Understanding of game UX principles'],
-      posted: '1 week ago'
+      description: 'Join our core development team to create next-generation gaming experiences using Unity and Unreal Engine.',
+      requirements: ['Game porting experience', 'Proficiency in C# or C++ & optimization', 'Unity/Unreal Engine expertise', 'Multiplayer systems knowledge'],
+      posted: '2025-07-09',
+      apply: 'https://www.skillshot.pl/jobs/36884-general-game-developer-unity-unreal-porting-specia'
     },
-    {
-      title: 'Game Artist - 3D',
-      department: 'Art',
-      location: 'Hybrid / Gdansk',
-      type: 'Full-time',
-      salary: '$50,000 - $75,000',
-      experience: '2+ years',
-      description: 'Create stunning 3D art assets and environments for our upcoming gaming projects.',
-      requirements: ['2+ years 3D art experience', 'Maya/Blender proficiency', 'Texturing and lighting skills', 'Portfolio with game-ready assets'],
-      posted: '3 days ago'
-    },
-    {
-      title: 'QA Engineer',
-      department: 'Quality Assurance',
-      location: 'Remote',
-      type: 'Contract',
-      salary: '$40,000 - $55,000',
-      experience: '2+ years',
-      description: 'Ensure quality and performance across multiple gaming platforms through comprehensive testing.',
-      requirements: ['2+ years QA experience', 'Game testing expertise', 'Bug tracking tools knowledge', 'Attention to detail'],
-      posted: '5 days ago'
-    }
+    // {
+    //   title: 'UI/UX Designer',
+    //   department: 'Design',
+    //   location: 'Remote / Krakow',
+    //   type: 'Full-time',
+    //   salary: '$60,000 - $90,000',
+    //   experience: '3+ years',
+    //   description: 'Design intuitive and engaging user interfaces for mobile and PC gaming platforms.',
+    //   requirements: ['3+ years UI/UX design experience', 'Gaming industry experience preferred', 'Figma/Adobe Creative Suite', 'Understanding of game UX principles'],
+    //   posted: '1 week ago'
+    // },
+    // {
+    //   title: 'Game Artist - 3D',
+    //   department: 'Art',
+    //   location: 'Hybrid / Gdansk',
+    //   type: 'Full-time',
+    //   salary: '$50,000 - $75,000',
+    //   experience: '2+ years',
+    //   description: 'Create stunning 3D art assets and environments for our upcoming gaming projects.',
+    //   requirements: ['2+ years 3D art experience', 'Maya/Blender proficiency', 'Texturing and lighting skills', 'Portfolio with game-ready assets'],
+    //   posted: '3 days ago'
+    // },
+    // {
+    //   title: 'QA Engineer',
+    //   department: 'Quality Assurance',
+    //   location: 'Remote',
+    //   type: 'Contract',
+    //   salary: '$40,000 - $55,000',
+    //   experience: '2+ years',
+    //   description: 'Ensure quality and performance across multiple gaming platforms through comprehensive testing.',
+    //   requirements: ['2+ years QA experience', 'Game testing expertise', 'Bug tracking tools knowledge', 'Attention to detail'],
+    //   posted: '5 days ago'
+    // }
   ];
 
   const benefits = [
@@ -107,7 +108,7 @@ const Careers = () => {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                    Why Work at <span className="text-lynx-pink">LYNXBYTE?</span>
+                    WHY WORK AI <span className="text-lynx-pink">LYNXBYTE?</span>
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed mb-8">
                     We're more than just a game development studio. We're a community of passionate creators 
@@ -140,7 +141,7 @@ const Careers = () => {
           {/* Benefits */}
           <div className="mb-16 animate-fade-in">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">
-              Perks & <span className="text-lynx-pink">Benefits</span>
+              PERKS & <span className="text-lynx-pink">BENEFITS</span>
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.map((benefit, index) => (
@@ -166,7 +167,7 @@ const Careers = () => {
           {/* Job Openings */}
           <div className="animate-fade-in">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">
-              Open <span className="text-lynx-pink">Positions</span>
+              OPEN <span className="text-lynx-pink">POSITIONS</span>
             </h2>
             <div className="space-y-6">
               {jobOpenings.map((job, index) => (
@@ -199,10 +200,10 @@ const Careers = () => {
                           <Clock className="w-4 h-4" />
                           {job.type}
                         </div>
-                        <div className="flex items-center gap-2 text-gray-400">
+                        {/* <div className="flex items-center gap-2 text-gray-400">
                           <DollarSign className="w-4 h-4" />
                           {job.salary}
-                        </div>
+                        </div> */}
                         <div className="text-lynx-pink font-medium">
                           Posted {job.posted}
                         </div>
@@ -226,7 +227,9 @@ const Careers = () => {
                         <div className="text-lg font-bold text-lynx-pink">{job.experience}</div>
                         <div className="text-sm text-gray-400">Experience</div>
                       </div>
-                      <Button className="w-full bg-lynx-pink hover:bg-lynx-pink-hover text-white py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+                      <Button className="w-full bg-lynx-pink hover:bg-lynx-pink-hover text-white py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                        onClick={() => window.open(job.apply, '_blank')}
+                      >
                         Apply Now
                       </Button>
                     </div>

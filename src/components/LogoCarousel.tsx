@@ -11,46 +11,16 @@ const LogoCarousel: React.FC = () => {
 
   // Przykładowe loga firm - możesz zastąpić własnymi
   const logos: Logo[] = [
-    {
-      id: 1,
-      name: "Company 1",
-      image: "/placeholder.svg" // Zastąp rzeczywistymi ścieżkami do logo
-    },
-    {
-      id: 2,
-      name: "Company 2", 
-      image: "/placeholder.svg"
-    },
-    {
-      id: 3,
-      name: "Company 3",
-      image: "/placeholder.svg"
-    },
-    {
-      id: 4,
-      name: "Company 4",
-      image: "/placeholder.svg"
-    },
-    {
-      id: 5,
-      name: "Company 5",
-      image: "/placeholder.svg"
-    },
-    {
-      id: 6,
-      name: "Company 6",
-      image: "/placeholder.svg"
-    },
-    {
-      id: 7,
-      name: "Company 7",
-      image: "/placeholder.svg"
-    },
-    {
-      id: 8,
-      name: "Company 8",
-      image: "/placeholder.svg"
-    }
+    { id: 1, name: "Company 1", image: "lovable-uploads/1.webp" },
+    { id: 2, name: "Company 2", image: "lovable-uploads/2.png" },
+    { id: 3, name: "Company 3", image: "lovable-uploads/3.jpg" },
+    { id: 4, name: "Company 4", image: "lovable-uploads/4.jpg" },
+    { id: 8, name: "Company 8", image: "lovable-uploads/8.png" },
+    { id: 5, name: "Company 5", image: "lovable-uploads/5.png" },
+    { id: 6, name: "Company 6", image: "lovable-uploads/6.svg" },
+    { id: 7, name: "Company 7", image: "lovable-uploads/7.svg" },
+    { id: 10, name: "Company 10", image: "lovable-uploads/gms.png" },
+    { id: 9, name: "Company 9", image: "lovable-uploads/9.avif" },
   ];
 
   useEffect(() => {
@@ -106,15 +76,29 @@ const LogoCarousel: React.FC = () => {
           {logos.map((logo) => (
             <div
               key={`first-${logo.id}`}
-              className="flex-shrink-0 flex items-center justify-center w-32 h-16 bg-white rounded-lg p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
-              style={{ minWidth: '128px' }}
+              className="flex-shrink-0 flex items-center justify-center w-48 h-24 bg-white rounded-xl border border-gray-200 shadow-md"
+              style={{ minWidth: '192px', minHeight: '96px', maxWidth: '192px', maxHeight: '96px' }}
             >
-              <img
-                src={logo.image}
-                alt={logo.name}
-                className="max-w-full max-h-full object-contain"
-                draggable={false}
-              />
+              <div
+                style={{
+                  background: [2, 5, 9].includes(logo.id) ? '#000' : 'transparent',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: logo.id === 8 ? '180px' : '140px',
+                  height: logo.id === 8 ? '80px' : '60px',
+                  margin: '0 auto',
+                }}
+              >
+                <img
+                  src={logo.image}
+                  alt={logo.name}
+                  className="object-contain"
+                  draggable={false}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+                />
+              </div>
             </div>
           ))}
           
@@ -122,15 +106,29 @@ const LogoCarousel: React.FC = () => {
           {logos.map((logo) => (
             <div
               key={`second-${logo.id}`}
-              className="flex-shrink-0 flex items-center justify-center w-32 h-16 bg-white rounded-lg p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
-              style={{ minWidth: '128px' }}
+              className="flex-shrink-0 flex items-center justify-center w-48 h-24 bg-white rounded-xl border border-gray-200 shadow-md"
+              style={{ minWidth: '192px', minHeight: '96px', maxWidth: '192px', maxHeight: '96px' }}
             >
-              <img
-                src={logo.image}
-                alt={logo.name}
-                className="max-w-full max-h-full object-contain"
-                draggable={false}
-              />
+              <div
+                style={{
+                  background: [5, 9].includes(logo.id) ? '#000' : 'transparent',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: logo.id === 8 ? '180px' : '140px',
+                  height: logo.id === 8 ? '80px' : '60px',
+                  margin: '0 auto',
+                }}
+              >
+                <img
+                  src={logo.image}
+                  alt={logo.name}
+                  className="object-contain"
+                  draggable={false}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+                />
+              </div>
             </div>
           ))}
         </div>

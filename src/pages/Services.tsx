@@ -1,152 +1,106 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import LogoCarousel from '@/components/LogoCarousel';
-import { Gamepad2, Smartphone, Monitor, Headphones, Code, Palette, X, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Gamepad2, Smartphone, Monitor, Headphones, Code, Palette, X, ArrowRight, ChevronDown, ChevronUp, Repeat, Users, CheckCircle, Wrench, UploadCloud } from 'lucide-react';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const services = [
     {
-      icon: <Gamepad2 className="w-8 h-8" />,
-      title: 'Game Development',
+      icon: <Repeat className="w-8 h-8" />, // Game porting
+      title: 'Game Poriting',
+      description: 'Game proting to best platforms like Playstation, Xbox, Nintendo Switch & PC.',
+      features: ['Porting from PC & Mobile to Consoles', 'Performance optimization', 'Certification & Quality assurance'],
+      detailedDescription: `Our game porting service ensures your title reaches new audiences by adapting it to additional platforms with maximum performance and fidelity. We take your existing game and make it run seamlessly on consoles, mobile devices, or PC, preserving the core experience while optimizing for each system's unique requirements.\n\nOur porting process includes:\n• Pre-contract estimation \n• Platform-specific optimization (graphics, performance, controls)\n• Compliance with certification requirements \n• Rigorous cross-platform testing and QA\n• Support for updates, patches, and post-launch maintenance\n\nWe minimize risk and time-to-market while maximizing technical quality and player experience on every platform.`
+    },
+    {
+      icon: <Gamepad2 className="w-8 h-8" />, // Full development
+      title: 'Full development',
       description: 'Full-cycle game development from concept to launch across multiple platforms.',
-      features: ['Cross-platform development', 'Performance optimization', 'Quality assurance'],
-      detailedDescription: `Our comprehensive game development service covers every aspect of creating engaging digital experiences. From initial concept brainstorming to final product launch, we handle the entire development lifecycle with precision and creativity.
-
-We specialize in creating games that not only entertain but also deliver exceptional performance across all target platforms. Our team of experienced developers, designers, and QA specialists work together to ensure your vision becomes a reality that exceeds expectations.
-
-Our development process includes:
-• Detailed project planning and milestone tracking
-• Agile development methodology for flexibility
-• Regular client communication and progress updates
-• Comprehensive testing and quality assurance
-• Post-launch support and maintenance`
+      features: ['Unity, Unreal Engine & Godot Engine', 'Rady to release development', 'From designe to release'],
+      detailedDescription: `Mobile gaming represents the fastest-growing segment in the gaming industry, and we're experts at creating compelling mobile experiences that players love.\n\nOur mobile game development expertise spans both native iOS and Android development, as well as cross-platform solutions that maximize your reach. We understand the unique challenges of mobile gaming, from battery optimization to varying screen sizes and device capabilities.\n\nKey mobile development features:\n• Responsive design for all device sizes\n• Touch gesture optimization and haptic feedback\n• App Store and Google Play optimization\n• In-app purchase and advertising integration\n• Social features and multiplayer capabilities\n• Analytics and user behavior tracking`
     },
     {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: 'Mobile Games',
-      description: 'Native and hybrid mobile game development for iOS and Android platforms.',
-      features: ['Touch controls optimization', 'App store optimization', 'Monetization strategies'],
-      detailedDescription: `Mobile gaming represents the fastest-growing segment in the gaming industry, and we're experts at creating compelling mobile experiences that players love.
-
-Our mobile game development expertise spans both native iOS and Android development, as well as cross-platform solutions that maximize your reach. We understand the unique challenges of mobile gaming, from battery optimization to varying screen sizes and device capabilities.
-
-Key mobile development features:
-• Responsive design for all device sizes
-• Touch gesture optimization and haptic feedback
-• App Store and Google Play optimization
-• In-app purchase and advertising integration
-• Social features and multiplayer capabilities
-• Analytics and user behavior tracking`
+      icon: <Users className="w-8 h-8" />, // Co-development
+      title: 'Co-development',
+      description: 'We work close to your team to deliver features, content, or technical solutions.',
+      features: ['Feature or module co-development', 'Multiplayer implementation', 'Engine & tools integration'],
+      detailedDescription: `Our experts support your team in key areas: feature development, content updates, or technical problem-solving. We adapt to your workflow and tools, helping you scale up and deliver on time.`
     },
     {
-      icon: <Monitor className="w-8 h-8" />,
-      title: 'PC & Console',
-      description: 'High-performance games for PC, PlayStation, Xbox, and Nintendo platforms.',
-      features: ['Console certification', 'High-end graphics', 'Controller support'],
-      detailedDescription: `Creating games for PC and console platforms requires a deep understanding of hardware capabilities and platform-specific requirements. Our team has extensive experience developing for all major gaming platforms.
-
-We specialize in creating high-performance games that take full advantage of modern hardware while maintaining compatibility across different specifications. From indie titles to AAA experiences, we deliver polished products that meet platform standards.
-
-Platform expertise includes:
-• PC development with DirectX and Vulkan support
-• PlayStation 4/5 development and certification
-• Xbox One/Series X|S development and certification
-• Nintendo Switch development and certification
-• Cross-platform multiplayer implementation
-• Performance optimization for various hardware configurations`
+      icon: <CheckCircle className="w-8 h-8" />, // QA & Localization
+      title: 'QA & Localization',
+      description: 'Testing, certification, and localization for global releases.',
+      features: ['FQA, CQA & LQA', 'Game translation', 'Platform compliance'],
+      detailedDescription: `We provide functional, compliance, and localization testing. Our team adapts your game for new languages and markets, ensuring a smooth global launch.`
     },
     {
-      icon: <Headphones className="w-8 h-8" />,
-      title: 'VR/AR Games',
-      description: 'Immersive virtual and augmented reality gaming experiences.',
-      features: ['VR optimization', 'Spatial interaction', 'Motion tracking'],
-      detailedDescription: `Virtual and Augmented Reality represent the cutting edge of gaming technology, offering unprecedented levels of immersion and interactivity. Our VR/AR development team creates experiences that push the boundaries of what's possible.
-
-We develop for all major VR/AR platforms including Meta Quest, HTC Vive, PlayStation VR, and mobile AR solutions. Our expertise in spatial computing, 3D audio, and motion tracking ensures your VR/AR experience is both technically sound and deeply engaging.
-
-VR/AR development capabilities:
-• 6DOF tracking and spatial mapping
-• Hand and gesture recognition systems
-• 3D spatial audio implementation
-• Comfort optimization and motion sickness prevention
-• Multiplayer VR experiences
-• AR markerless tracking and environmental understanding`
+      icon: <Wrench className="w-8 h-8" />, // Optimization & Bug fixing
+      title: 'Optimization & Bug fixing',
+      description: 'Performance tuning and bug fixing for new and existing games.',
+      features: ['Performance profiling', 'Bug fixing', 'Code review'],
+      detailedDescription: `We identify and resolve bottlenecks, memory leaks, and bugs. Our team delivers code reviews and technical audits to keep your game running smoothly.`
     },
     {
-      icon: <Code className="w-8 h-8" />,
-      title: 'Technical Consulting',
-      description: 'Expert technical guidance and code review for your gaming projects.',
-      features: ['Code optimization', 'Architecture design', 'Performance audits'],
-      detailedDescription: `Sometimes you need expert guidance to take your project to the next level. Our technical consulting services provide the expertise and insights you need to make informed decisions about your game development process.
-
-Whether you're looking to optimize existing code, design a new architecture, or troubleshoot performance issues, our senior developers and technical architects are here to help. We provide actionable recommendations that can save you time, money, and frustration.
-
-Consulting services include:
-• Code review and optimization recommendations
-• System architecture design and planning
-• Performance profiling and bottleneck identification
-• Technology stack selection and migration planning
-• Security audit and best practices implementation
-• Team training and knowledge transfer sessions`
-    },
-    {
-      icon: <Palette className="w-8 h-8" />,
-      title: 'Game Design',
-      description: 'Creative game design and user experience optimization services.',
-      features: ['UI/UX design', 'Game mechanics', 'Player engagement'],
-      detailedDescription: `Great games start with great design. Our game design team combines creativity with data-driven insights to create engaging experiences that keep players coming back for more.
-
-We specialize in creating intuitive user interfaces, compelling game mechanics, and immersive worlds that captivate players. Our design process is iterative and player-focused, ensuring that every element serves the overall player experience.
-
-Design services encompass:
-• Game mechanics design and balancing
-• User interface and user experience design
-• Level design and world building
-• Character design and storytelling
-• Player progression and reward systems
-• Accessibility design and inclusive gaming features`
+      icon: <UploadCloud className="w-8 h-8" />, // Release Management
+      title: 'Release Management',
+      description: 'Support for launching, updating, and maintaining your game.',
+      features: ['Store submission', 'Patch management', 'LiveOps support'],
+      detailedDescription: `We handle store submissions, updates, and post-launch support. Our team ensures your game’s success after release with ongoing monitoring and player engagement.`
     }
   ];
 
   const faqData = [
     {
-      question: "How long does it typically take to develop a game?",
-      answer: "Game development timelines vary significantly based on scope and complexity. A simple mobile game might take 3-6 months, while a complex PC/console game can take 1-3 years. We provide detailed project timelines during our initial consultation and use agile methodologies to ensure transparent progress tracking throughout development."
+      question: "What is the cost and timeline for porting a game?",
+      answer: "It depends on the size of the game, code quality, and required UX/UI changes. Each game is priced individually, but costs typically range from €15,000 to €250,000. The porting process can take anywhere from a few weeks to up to a year. Our record? A full port in under a week! If you'd like a quote - reach out and we'll provide a free detailed estimate."
     },
     {
-      question: "What platforms do you develop games for?",
-      answer: "We develop for all major gaming platforms including iOS, Android, PC (Windows/Mac/Linux), PlayStation 4/5, Xbox One/Series X|S, Nintendo Switch, and VR/AR platforms like Meta Quest and HTC Vive. We can also create cross-platform games that work seamlessly across multiple devices."
+      question: "Do you port games to Nintendo Switch 2?",
+      answer: "Yes, we do. The challenge is not the development itself, but the publishing. Nintendo currently places heavy restrictions on releasing games for that platform. However, we can assist you throughout the entire process."
     },
     {
-      question: "Do you provide ongoing support after game launch?",
-      answer: "Yes, we offer comprehensive post-launch support including bug fixes, performance updates, content updates, and server maintenance. We also provide analytics and player feedback analysis to help you optimize your game's performance and player engagement."
+      question: "Do you provide ongoing support after the game launch?",
+      answer: "Yes, we offer comprehensive post-launch support including bug fixes, performance and content updates, server maintenance, analytics, and player feedback analysis to help optimize your game."
     },
     {
-      question: "Can you help with game monetization strategies?",
-      answer: "Absolutely! We have extensive experience with various monetization models including premium pricing, freemium with in-app purchases, subscription models, and advertising integration. We'll work with you to choose the best strategy for your game and target audience."
+      question: "Can we work on a rev-share model?",
+      answer: "At the moment, we do not offer revenue share models. However, we can offer reduced development costs while still operating under a fixed-price model."
     },
     {
-      question: "What is your development process like?",
-      answer: "We follow an iterative, agile development process that includes concept development, prototyping, production, testing, and launch. We maintain regular communication with clients throughout the process, providing weekly updates and milestone reviews. Our process is designed to be flexible and transparent."
+      question: "Does the game need to have controller support implemented before porting?",
+      answer: "Absolutely not. We handle the entire process, including adapting UX/UI and implementing controller support as needed."
+    },
+    {
+      question: "Can you guarantee that my game will be successfully ported to consoles?",
+      answer: "Yes. We offer a full guarantee: either your game is successfully ported to the target console, or we refund 100% of the costs. We thoroughly review each game before signing any contract, so we are 110% confident the process will go smoothly."
+    },
+    {
+      question: "Can I hire a single person through body leasing?",
+      answer: "No. We work exclusively on a per-project or per-feature basis. We provide guarantees and take full responsibility for our work."
+    },
+    {
+      question: "Can I order QA services for just a few hours?",
+      answer: "Yes. Whether you need 10 hours or 1,500 hours of QA, we’re happy to help in any situation."
     },
     {
       question: "Do you work with indie developers and small studios?",
-      answer: "Yes! We work with clients of all sizes, from individual indie developers to large studios. We offer scalable services and can adapt our approach to fit your budget and timeline. We're passionate about helping bring creative visions to life, regardless of team size."
+      answer: "Yes! We collaborate with teams of all sizes, from solo indie devs to large studios. Our services are scalable and we can tailor our approach to fit your budget and timeline. We're passionate about turning creative visions into reality."
     },
     {
-      question: "Can you help optimize existing games?",
-      answer: "Definitely! Our technical consulting services include performance optimization, code refactoring, and feature enhancement for existing games. We can analyze your current codebase and provide specific recommendations to improve performance, add new features, or fix technical issues."
+      question: "Do I need to own my own consoles or developer accounts?",
+      answer: "No. We provide all necessary hardware, accounts, and certifications. You simply assign us the task - we handle everything from A to Z."
     },
     {
-      question: "What technologies and engines do you use?",
-      answer: "We work with industry-standard technologies including Unity, Unreal Engine, Godot, and custom engines. Our team is proficient in C#, C++, JavaScript, and other programming languages. We choose the best technology stack based on your project requirements and target platforms."
+      question: "Do you also publish games?",
+      answer: "Yes, but currently on a limited basis. Previously we offered full free publishing and porting services. While porting is now paid, we can still provide publishing under a revenue share model."
     }
   ];
 
@@ -421,12 +375,21 @@ Design services encompass:
               </div>
 
               <div className="mt-8 flex justify-end">
-                <button
-                  onClick={handleClose}
-                  className="bg-lynx-pink hover:bg-lynx-pink/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-                >
-                  Close
-                </button>
+                {selectedService === 2 ? (
+                  <button
+                    onClick={() => window.open('https://www.skillshot.pl/jobs/36884-general-game-developer-unity-unreal-porting-specia', '_blank')}
+                    className="bg-lynx-pink hover:bg-lynx-pink/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+                  >
+                    Work with us
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => navigate('/contact')}
+                    className="bg-lynx-pink hover:bg-lynx-pink/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+                  >
+                    Work with us
+                  </button>
+                )}
               </div>
             </div>
           </div>

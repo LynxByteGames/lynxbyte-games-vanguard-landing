@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 // import { ChevronLeft, ChevronRight } from 'lucide-react';
 import LogoCarousel from './LogoCarousel';
+import { useNavigate } from 'react-router-dom';
 
 // Carousel data for different games
 const carouselData = [
@@ -9,7 +10,7 @@ const carouselData = [
     id: 1,
     title: "YOUR GATEWAY TO GAMING SUCCESS ON",
     subtitle: "CONSOLES PLATFORMS",
-    description: "Professional game development studio creating extraordinary gaming experiences across multiple platforms with cutting-edge technology and creative excellence.",
+    description: "Professional game development studio with hyperfocus on console platforms",
     backgroundImage: "/lovable-uploads/hero.png",
     stats: [50, 8, 0]
   },
@@ -101,6 +102,8 @@ const Hero = () => {
   //   setTimeout(() => setIsTransitioning(false), 500);
   // };
 
+  const navigate = useNavigate();
+
   return (
     <section className="relative overflow-hidden bg-lynx-dark h-[110vh]">
       {/* Background Image with Overlay */}
@@ -169,6 +172,7 @@ const Hero = () => {
             <div className="flex justify-center">
               <Button 
                 className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-lynx-pink/40"
+                onClick={() => navigate('/contact')}
               >
                 Work with us
               </Button>

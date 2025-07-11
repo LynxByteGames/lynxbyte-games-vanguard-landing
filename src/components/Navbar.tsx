@@ -28,10 +28,8 @@ const Navbar = () => {
   ];
 
   const blogPosts = [
-    { name: 'The Future of Gaming: AI and Machine Learning', slug: 'future-of-gaming-ai-ml' },
-    { name: 'Optimizing Game Performance Across Platforms', slug: 'optimizing-game-performance' },
-    { name: 'Building Engaging Game Narratives', slug: 'building-engaging-narratives' },
-    { name: 'Mobile Gaming Market Trends', slug: 'mobile-gaming-market-trends' }
+    { name: 'Gamescome 2025 x LYNXBYTE GAMES - you can find us!', slug: 'future-of-gaming-ai-ml' },
+    { name: 'Game porting 101 - all information you need to port the game to consoles', slug: 'optimizing-game-performance' }
   ];
 
   const isActive = (href: string) => {
@@ -114,7 +112,6 @@ const Navbar = () => {
                     </div>
                   );
                 }
-
                 if (item.name === 'Insights') {
                   return (
                     <div

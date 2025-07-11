@@ -4,18 +4,14 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Import blog posts
-import buildingNarratives from '@/blogposts/building-engaging-narratives';
 import futureGaming from '@/blogposts/future-of-gaming-ai-ml';
-import mobileTrends from '@/blogposts/mobile-gaming-market-trends';
 import gamePerformance from '@/blogposts/optimizing-game-performance';
 
 const BlogPosts = () => {
   const navigate = useNavigate();
   
   const blogPosts = [
-    buildingNarratives,
     futureGaming,
-    mobileTrends,
     gamePerformance
   ];
 

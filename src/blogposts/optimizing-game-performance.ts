@@ -1,42 +1,71 @@
 export default {
   slug: 'optimizing-game-performance',
-  title: 'Optimizing Game Performance Across Multiple Platforms',
+  title: 'Game porting 101 - all information you need to port the game to consoles',
   content: `
     <header>
       <h2>Introduction</h2>
-      <p>Developing games for multiple platforms—PC, consoles, and mobile—presents unique technical and creative challenges. Achieving smooth performance everywhere requires careful planning, smart engineering, and a deep understanding of each platform's strengths and limitations.</p>
+      <p>Best practices and techniques for ensuring your game runs smoothly on PC, console, and mobile devices.</p>
     </header>
     <section>
-      <h2>The Challenge of Multi-Platform Development</h2>
-      <p>Each platform has its own hardware capabilities, operating systems, and user expectations. Developers must optimize for a wide range of CPUs, GPUs, memory sizes, and input methods, all while maintaining a consistent gameplay experience.</p>
+      <h2>Understanding Platform-Specific Challenges</h2>
+      <p>Each gaming platform presents unique challenges for developers. From the varying hardware specifications of PCs to the limited resources of mobile devices, optimizing game performance requires a deep understanding of each platform's capabilities and limitations.</p>
       <ul>
-        <li><strong>Hardware Diversity:</strong> From high-end gaming PCs to budget smartphones, performance targets vary dramatically.</li>
-        <li><strong>Platform-Specific APIs:</strong> Graphics and audio APIs differ between platforms, requiring custom solutions or abstraction layers.</li>
-        <li><strong>User Experience:</strong> Players expect fast load times, smooth frame rates, and responsive controls everywhere.</li>
+        <li><strong>PC Gaming:</strong> Wide range of hardware configurations requires scalable optimization</li>
+        <li><strong>Console Gaming:</strong> Fixed hardware allows for highly optimized experiences</li>
+        <li><strong>Mobile Gaming:</strong> Limited battery life and processing power demand efficient code</li>
       </ul>
     </section>
     <section>
-      <h2>Performance Optimization Strategies</h2>
-      <p>Effective optimization is a multi-step process that begins early in development and continues through launch and beyond. Key strategies include:</p>
+      <h2>Performance Optimization Techniques</h2>
+      <p>Effective performance optimization involves multiple layers of improvement, from code-level optimizations to asset management and rendering techniques.</p>
+      <h3>Code-Level Optimizations</h3>
       <ul>
-        <li><strong>Asset Optimization:</strong> Compress textures, reduce polygon counts, and use efficient audio formats to minimize memory usage.</li>
-        <li><strong>Efficient Rendering:</strong> Use batching, culling, and level-of-detail (LOD) techniques to reduce GPU load.</li>
-        <li><strong>Profiling and Testing:</strong> Regularly profile performance on all target platforms and address bottlenecks as they arise.</li>
-        <li><strong>Platform-Specific Tweaks:</strong> Adjust settings and features based on the capabilities of each device.</li>
+        <li>Efficient memory management and garbage collection</li>
+        <li>Optimized algorithms and data structures</li>
+        <li>Multi-threading and parallel processing</li>
+        <li>Profile-guided optimization</li>
       </ul>
     </section>
     <section>
-      <h2>Case Study: Cross-Platform Success</h2>
-      <p>Games like <strong>Fortnite</strong> and <strong>Genshin Impact</strong> have set new standards for cross-platform performance. Their success is built on robust engine technology, aggressive optimization, and a commitment to delivering a seamless experience for all players.</p>
+      <h2>Asset Optimization</h2>
+      <p>Game assets often consume the majority of a game's resources. Proper asset optimization can significantly improve performance across all platforms.</p>
+      <h3>Texture Optimization</h3>
+      <ul>
+        <li>Use appropriate texture compression formats for each platform</li>
+        <li>Implement texture streaming for large worlds</li>
+        <li>Optimize texture atlasing and mipmapping</li>
+      </ul>
     </section>
     <section>
-      <h2>Conclusion</h2>
-      <p>Optimizing game performance across multiple platforms is a complex but rewarding challenge. By embracing best practices and staying flexible, developers can reach the widest possible audience and deliver unforgettable gaming experiences everywhere.</p>
+      <h2>Rendering Optimization</h2>
+      <p>Modern rendering techniques can dramatically improve performance while maintaining visual quality.</p>
+      <h3>Advanced Rendering Techniques</h3>
+      <ul>
+        <li>Level-of-detail (LOD) systems</li>
+        <li>Occlusion culling and frustum culling</li>
+        <li>Efficient lighting and shadow systems</li>
+        <li>Shader optimization and batching</li>
+      </ul>
     </section>
+    <section>
+      <h2>Platform-Specific Considerations</h2>
+      <p>Each platform requires specific optimization strategies to achieve the best possible performance.</p>
+      <h3>Mobile Optimization</h3>
+      <ul>
+        <li>Battery life optimization</li>
+        <li>Touch input optimization</li>
+        <li>Memory and storage constraints</li>
+        <li>Thermal management</li>
+      </ul>
+    </section>
+    <footer>
+      <h3>Conclusion</h3>
+      <p>Performance optimization is an ongoing process that requires careful consideration of each platform's unique characteristics. By implementing these techniques and continuously monitoring performance, developers can create games that run smoothly across all devices.</p>
+    </footer>
   `,
   author: 'Mike Chen',
   date: 'Dec 10, 2024',
-  readTime: '14 min read',
-  image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800',
+  readTime: '12 min read',
+  image: '/lovable-uploads/blog1.png',
   category: 'Development Tips'
 }; 

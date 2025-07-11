@@ -7,7 +7,11 @@ import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import { EMAILJS_CONFIG } from '@/config/emailjs';
 
-const Contact = () => {
+interface ContactProps {
+  className?: string;
+}
+
+const Contact: React.FC<ContactProps> = ({ className = "" }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -86,7 +90,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-lynx-dark py-12 md:py-20 section-padding">
+    <section id="contact" className={`bg-lynx-dark py-12 md:py-20 section-padding ${className}`}>
       <div className="container-width">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Side - Text Content */}

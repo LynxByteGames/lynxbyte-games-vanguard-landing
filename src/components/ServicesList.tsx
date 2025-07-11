@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gamepad2, Smartphone, Monitor, Headset, Code, Palette } from 'lucide-react';
+import { Gamepad2, Users, CheckCircle, Globe, Wrench, UploadCloud, Repeat } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ServicesList = () => {
@@ -11,34 +11,34 @@ const ServicesList = () => {
 
   const services = [
     {
-      icon: <Gamepad2 className="w-12 h-12 text-lynx-pink" />,
-      title: 'Game Development',
-      description: 'Full-cycle game development from concept to launch across all platforms.'
+      icon: <Repeat className="w-12 h-12 text-lynx-pink" />, // Game porting
+      title: 'Game porting',
+      description: 'Porting your game to new platforms and devices.'
     },
     {
-      icon: <Smartphone className="w-12 h-12 text-lynx-pink" />,
-      title: 'Mobile Games',
-      description: 'Native and cross-platform mobile game development for iOS and Android.'
+      icon: <Gamepad2 className="w-12 h-12 text-lynx-pink" />, // Full-development
+      title: 'Full-development',
+      description: 'Complete game development from idea to launch.'
     },
     {
-      icon: <Monitor className="w-12 h-12 text-lynx-pink" />,
-      title: 'PC & Console',
-      description: 'High-performance games for PC, PlayStation, Xbox, and Nintendo platforms.'
+      icon: <Users className="w-12 h-12 text-lynx-pink" />, // Co-development
+      title: 'Co-development',
+      description: 'Collaborative game development with your team.'
     },
     {
-      icon: <Headset className="w-12 h-12 text-lynx-pink" />,
-      title: 'VR/AR Games',
-      description: 'Immersive virtual and augmented reality gaming experiences.'
+      icon: <CheckCircle className="w-12 h-12 text-lynx-pink" />, // QA & Localization
+      title: 'QA & Localization',
+      description: 'Quality assurance and localization for global reach.'
     },
     {
-      icon: <Code className="w-12 h-12 text-lynx-pink" />,
-      title: 'Technical Consulting',
-      description: 'Expert technical guidance and optimization for your gaming projects.'
+      icon: <Wrench className="w-12 h-12 text-lynx-pink" />, // Optimization & Bug fixing
+      title: 'Optimization & Bug fixing',
+      description: 'Performance optimization and bug fixing.'
     },
     {
-      icon: <Palette className="w-12 h-12 text-lynx-pink" />,
-      title: 'Game Design',
-      description: 'Creative game design, mechanics, and user experience optimization.'
+      icon: <UploadCloud className="w-12 h-12 text-lynx-pink" />, // Release Management
+      title: 'Release Management',
+      description: 'Managing and supporting your game releases.'
     }
   ];
 

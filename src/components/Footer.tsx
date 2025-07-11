@@ -27,7 +27,7 @@ const Footer = () => {
               </p>
               <div className="flex space-x-4">
                 
-                <a href="#" className="text-gray-400 hover:text-lynx-pink transition-colors">
+                <a href="https://www.linkedin.com/company/lynxbyte-games/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-lynx-pink transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
                 
@@ -70,12 +70,12 @@ const Footer = () => {
             <div>
               <h3 className="text-lg font-bold mb-6">Services</h3>
               <ul className="space-y-3">
-                <li className="text-gray-300">Game Development</li>
-                <li className="text-gray-300">Mobile Games</li>
-                <li className="text-gray-300">PC & Console</li>
-                <li className="text-gray-300">VR/AR Games</li>
-                <li className="text-gray-300">Technical Consulting</li>
-                <li className="text-gray-300">Game Design</li>
+                <li className="text-gray-300">Game porting</li>
+                <li className="text-gray-300">Full-development</li>
+                <li className="text-gray-300">Co-development</li>
+                <li className="text-gray-300">QA & Localization</li>
+                <li className="text-gray-300">Optimization & Bug fixing</li>
+                <li className="text-gray-300">Release Management</li>
               </ul>
             </div>
 
@@ -113,13 +113,11 @@ const Footer = () => {
               </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-gray-400 hover:text-lynx-pink text-sm transition-colors">
-                  Privacy Policy
+                  
                 </a>
                 <a href="#" className="text-gray-400 hover:text-lynx-pink text-sm transition-colors">
-                  Terms & Conditions
                 </a>
                 <a href="#" className="text-gray-400 hover:text-lynx-pink text-sm transition-colors">
-                  Cookie Policy
                 </a>
               </div>
             </div>

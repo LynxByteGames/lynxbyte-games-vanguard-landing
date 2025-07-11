@@ -4,23 +4,17 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Import blog posts
-import buildingNarratives from '@/blogposts/building-engaging-narratives';
 import futureGaming from '@/blogposts/future-of-gaming-ai-ml';
-import mobileTrends from '@/blogposts/mobile-gaming-market-trends';
 import gamePerformance from '@/blogposts/optimizing-game-performance';
 
 const BlogPosts = () => {
   const navigate = useNavigate();
   
-  // Sort blog posts by date (most recent first) and take only the 2 most recent
+  // Use only the 2 blog posts
   const blogPosts = [
-    buildingNarratives,
     futureGaming,
-    mobileTrends,
     gamePerformance
-  ]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 2);
+  ];
 
   const handleBlogPostClick = (slug: string) => {
     navigate(`/insights/${slug}`);
@@ -32,7 +26,7 @@ const BlogPosts = () => {
         <div className="container-width">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black mb-6">
-              WE LOVE <span className="gradient-text">SHARING KNOWLEDGE</span>
+              WE LOVE <span className="text-lynx-pink">SHARING KNOWLEDGE</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Discover our latest insights, tips, and industry knowledge to help you succeed in game development
