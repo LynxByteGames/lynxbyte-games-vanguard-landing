@@ -15,8 +15,6 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { Analytics } from "@vercel/analytics/next"
-
 
 const Index = () => {
   const [showForm, setShowForm] = useState(false);
@@ -34,7 +32,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-lynx-dark">
-      <Analytics/>
+
       <Navbar />
       <Hero />
       <LogoCarousel/>
@@ -123,6 +121,7 @@ const Index = () => {
       <BlogPosts />
       <Contact />
       <Footer />
+
     </div>
   );
 };

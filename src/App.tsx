@@ -15,6 +15,8 @@ import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import ScrollToTop from "./components/ScrollToTop";
 import { toast } from "sonner";
+import { Analytics } from '@vercel/analytics/react';
+
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,8 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+            <Analytics />
+
       <TooltipProvider>
         <Toaster />
         <Sonner />
