@@ -8,12 +8,17 @@ import { Button } from '@/components/ui/button';
 import SimpleThemeToggle from '@/components/SimpleThemeToggle';
 import futureOfGaming from '@/blogposts/future-of-gaming-ai-ml';
 import optimizingPerformance from '@/blogposts/optimizing-game-performance';
+import { toast } from 'sonner';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
   // Blog theme state
   const [blogTheme, setBlogTheme] = useState('bg-white text-black');
+  
+  // Lead magnet state
+  const [reportEmail, setReportEmail] = useState('');
+  const [isReportLoading, setIsReportLoading] = useState(false);
 
   // Load theme from localStorage on component mount
   useEffect(() => {
@@ -35,6 +40,91 @@ const BlogPost = () => {
   };
 
   const post = slug ? blogPosts[slug as keyof typeof blogPosts] : null;
+
+  // Function to send gaming report request to Discord webhook
+  const sendReportToDiscord = async (email: string) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1393033317586047006/6fMJG91n-5HxZA-gonKFbbqIHlbCUHg6XQaRpsesDwbMF0oogooCjahwT_n1AiWwnEbL';
+    
+    const embed = {
+      title: '📊 New Gaming Industry Report Request',
+      color: 0xff2e9a, // Lynx pink color
+      fields: [
+        {
+          name: '📧 Email',
+          value: email,
+          inline: true
+        },
+        {
+          name: '📄 Request Type',
+          value: 'Gaming Industry Report',
+          inline: true
+        },
+        {
+          name: '🌐 Source',
+          value: `Blog Post: ${post?.title || 'Unknown'}`,
+          inline: true
+        },
+        {
+          name: '⏰ Timestamp',
+          value: new Date().toLocaleString('pl-PL'),
+          inline: true
+        }
+      ],
+      footer: {
+        text: 'Lynxbyte Games Gaming Industry Report Lead Magnet'
+      },
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          embeds: [embed]
+        })
+      });
+
+      if (response.ok) {
+        console.log('Discord webhook sent successfully for gaming report request');
+        return true;
+      } else {
+        console.error('Discord webhook failed:', response.status, response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Discord webhook error:', error);
+      return false;
+    }
+  };
+
+  const handleReportSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!reportEmail.trim()) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+
+    setIsReportLoading(true);
+
+    try {
+      console.log('Gaming report request submitted:', reportEmail);
+      
+      // Send to Discord webhook
+      await sendReportToDiscord(reportEmail);
+      
+      toast.success('Thank you! We will send your Gaming Industry Report shortly.');
+      setReportEmail('');
+    } catch (error) {
+      console.error('Gaming report request failed:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsReportLoading(false);
+    }
+  };
 
   if (!post) {
     return (
@@ -134,16 +224,23 @@ const BlogPost = () => {
             Download our comprehensive 2024 Gaming Market Analysis with market trends, revenue insights, and growth tactics.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form onSubmit={handleReportSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
+              value={reportEmail}
+              onChange={(e) => setReportEmail(e.target.value)}
               className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-lynx-pink"
+              required
             />
-            <Button className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
-              Get Report
+            <Button 
+              type="submit"
+              disabled={isReportLoading}
+              className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isReportLoading ? 'Sending...' : 'Get Report'}
             </Button>
-          </div>
+          </form>
           
           <p className="text-gray-400 text-sm mt-4">
             We won't spam you. Unsubscribe anytime. Your data is safe with us.

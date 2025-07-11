@@ -1,16 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Contact from '@/components/Contact';
 import { Calendar, User, ArrowRight, TrendingUp, Lightbulb, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 // Import blog posts
 import futureGaming from '@/blogposts/future-of-gaming-ai-ml';
 import gamePerformance from '@/blogposts/optimizing-game-performance';
 
 const Insights = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isNewsletterLoading, setIsNewsletterLoading] = useState(false);
+
+  // Function to send newsletter subscription to Discord webhook
+  const sendNewsletterToDiscord = async (email: string) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1393033317586047006/6fMJG91n-5HxZA-gonKFbbqIHlbCUHg6XQaRpsesDwbMF0oogooCjahwT_n1AiWwnEbL';
+    
+    const embed = {
+      title: '📧 New Newsletter Subscription',
+      color: 0xff2e9a, // Lynx pink color
+      fields: [
+        {
+          name: '📧 Email',
+          value: email,
+          inline: true
+        },
+        {
+          name: '📰 Subscription Type',
+          value: 'Newsletter',
+          inline: true
+        },
+        {
+          name: '🌐 Source',
+          value: 'Insights Page',
+          inline: true
+        },
+        {
+          name: '⏰ Timestamp',
+          value: new Date().toLocaleString('pl-PL'),
+          inline: true
+        }
+      ],
+      footer: {
+        text: 'Lynxbyte Games Newsletter Subscription'
+      },
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          embeds: [embed]
+        })
+      });
+
+      if (response.ok) {
+        console.log('Discord webhook sent successfully for newsletter subscription');
+        return true;
+      } else {
+        console.error('Discord webhook failed:', response.status, response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Discord webhook error:', error);
+      return false;
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newsletterEmail.trim()) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+
+    setIsNewsletterLoading(true);
+
+    try {
+      console.log('Newsletter subscription submitted:', newsletterEmail);
+      
+      // Send to Discord webhook
+      await sendNewsletterToDiscord(newsletterEmail);
+      
+      toast.success('Thank you for subscribing to our newsletter!');
+      setNewsletterEmail('');
+    } catch (error) {
+      console.error('Newsletter subscription failed:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsNewsletterLoading(false);
+    }
+  };
 
   const articles = [
     {
@@ -177,16 +265,23 @@ const Insights = () => {
                 Subscribe to our newsletter and get the latest insights, tutorials, and industry news 
                 delivered directly to your inbox.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input 
                   type="email" 
                   placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="flex-1 px-4 py-3 bg-lynx-dark border border-lynx-gray rounded-full text-white placeholder:text-gray-400 focus:outline-none focus:border-lynx-pink transition-colors"
+                  required
                 />
-                <Button className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
-                  Subscribe
+                <Button 
+                  type="submit"
+                  disabled={isNewsletterLoading}
+                  className="bg-lynx-pink hover:bg-lynx-pink-hover text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isNewsletterLoading ? 'Subscribing...' : 'Subscribe'}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
