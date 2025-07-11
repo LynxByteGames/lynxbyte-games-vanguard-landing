@@ -7,7 +7,7 @@ const PitchDeck: React.FC = () => {
 
   useEffect(() => {
     // Sprawdź czy plik PDF istnieje
-    fetch('/lovable-uploads/LYNXBYTE_GAMES_PITCHDECK (1).pdf', { method: 'HEAD' })
+    fetch('/lovable-uploads/LYNXBYTE_GAMES_PITCHDECK.pdf', { method: 'HEAD' })
       .then(response => {
         if (response.ok) {
           setFileExists(true);
@@ -50,7 +50,7 @@ const PitchDeck: React.FC = () => {
     <div className="h-screen w-screen bg-background">
       {/* Full Screen PDF */}
       <iframe
-        src="/lovable-uploads/LYNXBYTE_GAMES_PITCHDECK (1).pdf"
+        src="/lovable-uploads/LYNXBYTE_GAMES_PITCHDECK.pdf"
         className="w-full h-full border-0"
         title="LynxByte Games Pitch Deck"
       />
