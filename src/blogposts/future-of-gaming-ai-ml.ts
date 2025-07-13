@@ -5,7 +5,7 @@ export default {
     <header>
       <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">We're attending Gamescom 2025</h1>
       <p style="font-size: 1.25rem; color: #444;">LYNXBYTE GAMES will be at Gamescom in Cologne from <strong>July 20th to 22nd</strong>. It's the perfect opportunity to connect, collaborate, and exchange insights in person.</p>
-      <img src="/lovable-uploads/blog_2.jpeg" alt="LYNXBYTE Gamescom Booth" style="width: 100%; border-radius: 1rem; margin-top: 1rem;" />
+      <img src="/lovable-uploads/gamescom_blogphoto.webp" alt="LYNXBYTE Gamescom Booth" style="width: 100%; border-radius: 1rem; margin-top: 1rem;" />
     </header>
     
     <section>
@@ -24,7 +24,6 @@ export default {
         <li><strong>Bartosz Ludera:</strong> <a href="mailto:bartosz.ludera@lynxbytegames.eu">bartosz.ludera@lynxbytegames.eu</a></li>
         <li><strong>Krystian Młodziejewski:</strong> <a href="mailto:krystian.mlodziejewski@lynxbytegames.eu">krystian.mlodziejewski@lynxbytegames.eu</a></li>
       </ul>
-      <img src="/lovable-uploads/team_photo_lynxbyte.jpeg" alt="LYNXBYTE Team" style="width: 100%; border-radius: 1rem; margin-top: 1rem;" />
     </section>
 
     <section>
@@ -44,6 +43,6 @@ export default {
   author: 'Bartosz Ludera',
   date: 'Jul 11, 2025',
   readTime: '2 min read',
-  image: '/lovable-uploads/blog_gamescom2025.jpeg',
+  image: '/lovable-uploads/blog_2.jpeg',
   category: 'Events & Networking'
 };

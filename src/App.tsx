@@ -23,15 +23,8 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const handleBookConsultation = () => {
-    // Scroll to contact section
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // If not on home page, navigate to home and scroll to contact
-      window.location.href = '/#contact';
-    }
-    toast.success('Przewiń do sekcji kontaktowej, aby umówić konsultację!');
+    // Open Calendly in new window
+    window.open('https://calendly.com/krystian-mlodziejewski-lynxbytegames/30min?back=1&month=2025-07', '_blank');
   };
 
   const handleClosePopup = () => {

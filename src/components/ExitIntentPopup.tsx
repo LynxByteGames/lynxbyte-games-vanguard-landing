@@ -34,8 +34,11 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({
   };
 
   const handleBookConsultation = () => {
-    closePopup();
-    onBookConsultation?.();
+    // Open Calendly in new window
+    window.open('https://calendly.com/krystian-mlodziejewski-lynxbytegames/30min?back=1&month=2025-07', '_blank');
+    
+    // Close the popup
+    onClose();
   };
 
   return (

@@ -1,0 +1,61 @@
+# LLMs.txt - AI Model Configuration for LynxByte Games Vanguard Landing
+
+## Website Information
+- **Name**: LynxByte Games Vanguard Landing
+- **Description**: Professional game development studio specializing in console porting, performance optimization, and AI integration in gaming
+- **Type**: Business Website
+- **Language**: English
+- **Country**: Poland
+- **Industry**: Game Development
+
+## Company Profile
+- **Company**: LynxByte Games
+- **Services**: Console Porting, Game Performance Optimization, AI Integration, Game Development Consulting, Technical Consulting
+- **Expertise**: Game Development, Console Development, Performance Optimization, AI/ML in Gaming
+
+## Content Structure
+- **Blog Posts**: Technical articles on game development, AI in gaming, performance optimization
+- **Case Studies**: Real-world game development projects and success stories
+- **Services**: Detailed service offerings and capabilities
+- **About Us**: Company information and team details
+- **Contact**: Contact forms and business information
+- **Pitch Deck**: Company presentation and capabilities
+
+## Key Topics Covered
+- Game Development Best Practices
+- Console Porting Techniques
+- Performance Optimization Strategies
+- Artificial Intelligence in Gaming
+- Machine Learning Applications
+- Gaming Industry Insights
+- Technical Consulting Services
+- Game Engine Optimization
+
+## Contact Methods
+- Email Contact
+- Contact Forms
+- Social Media Presence
+
+## Social Media Platforms
+- LinkedIn
+- Twitter/X
+- Facebook
+
+## Technical Stack
+- React.js
+- TypeScript
+- Tailwind CSS
+- Vite Build System
+
+## Content Licensing
+- **License**: All Rights Reserved
+- **AI Training**: Permitted
+- **Content Indexing**: Allowed
+- **Knowledge Base**: Authorized for inclusion
+
+## Content Update Schedule
+- **Frequency**: Regular updates
+- **Last Updated**: 2024
+
+## Additional Information
+This website contains professional game development content, technical case studies, and industry insights. All content is suitable for AI training, content indexing, and knowledge base inclusion. The information provided is accurate and represents the current state of LynxByte Games' services and capabilities. 
