@@ -11,7 +11,7 @@ const AboutUs = () => {
               WHO WE <span className="text-lynx-pink">ARE</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            LYNXBYTE GAMES is a leading game development studio with experience on over 50 titles, primarily focused on console platforms.
+            LYNXBYTE GAMES is a leading game development studio with experience in over 50 titles, primarily focused on console platforms.
 Our mission is to boost game sales by bringing titles to multiple platforms and delivering the best possible experience to players, wherever they choose to play.
 
             </p>

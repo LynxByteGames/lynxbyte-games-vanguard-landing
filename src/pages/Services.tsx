@@ -15,8 +15,8 @@ const Services = () => {
   const services = [
     {
       icon: <Repeat className="w-8 h-8" />, // Game porting
-      title: 'Game Poriting',
-      description: 'Game proting to best platforms like Playstation, Xbox, Nintendo Switch & PC.',
+      title: 'Game Porting',
+      description: 'Game porting to best platforms like PlayStation, Xbox, Nintendo Switch & PC.',
       features: ['Porting from PC & Mobile to Consoles', 'Performance optimization', 'Certification & Quality assurance'],
       detailedDescription: `Our game porting service ensures your title reaches new audiences by adapting it to additional platforms with maximum performance and fidelity. We take your existing game and make it run seamlessly on consoles, mobile devices, or PC, preserving the core experience while optimizing for each system's unique requirements.\n\nOur porting process includes:\n• Pre-contract estimation \n• Platform-specific optimization (graphics, performance, controls)\n• Compliance with certification requirements \n• Rigorous cross-platform testing and QA\n• Support for updates, patches, and post-launch maintenance\n\nWe minimize risk and time-to-market while maximizing technical quality and player experience on every platform.`
     },
@@ -24,13 +24,13 @@ const Services = () => {
       icon: <Gamepad2 className="w-8 h-8" />, // Full development
       title: 'Full development',
       description: 'Full-cycle game development from concept to launch across multiple platforms.',
-      features: ['Unity, Unreal Engine & Godot Engine', 'Rady to release development', 'From designe to release'],
+      features: ['Unity, Unreal Engine & Godot Engine', 'Ready to release development', 'From design to release'],
       detailedDescription: `Mobile gaming represents the fastest-growing segment in the gaming industry, and we're experts at creating compelling mobile experiences that players love.\n\nOur mobile game development expertise spans both native iOS and Android development, as well as cross-platform solutions that maximize your reach. We understand the unique challenges of mobile gaming, from battery optimization to varying screen sizes and device capabilities.\n\nKey mobile development features:\n• Responsive design for all device sizes\n• Touch gesture optimization and haptic feedback\n• App Store and Google Play optimization\n• In-app purchase and advertising integration\n• Social features and multiplayer capabilities\n• Analytics and user behavior tracking`
     },
     {
       icon: <Users className="w-8 h-8" />, // Co-development
       title: 'Co-development',
-      description: 'We work close to your team to deliver features, content, or technical solutions.',
+      description: 'We work closely with your team to deliver features, content, or technical solutions.',
       features: ['Feature or module co-development', 'Multiplayer implementation', 'Engine & tools integration'],
       detailedDescription: `Our experts support your team in key areas: feature development, content updates, or technical problem-solving. We adapt to your workflow and tools, helping you scale up and deliver on time.`
     },
