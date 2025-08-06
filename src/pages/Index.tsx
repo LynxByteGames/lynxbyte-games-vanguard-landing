@@ -97,6 +97,9 @@ const Index = () => {
       // Send to Discord webhook
       const discordResult = await sendToDiscord(email);
       
+      // Open pitch deck in new tab
+      window.open('https://drive.google.com/file/d/13NNg1j4i2k-oc-qhRzWtIxfpKwe8E4Ee/view?usp=sharing', '_blank');
+      
       toast.success('Thank you for your interest! We will send your pitch deck shortly.');
       
       setShowForm(false);
