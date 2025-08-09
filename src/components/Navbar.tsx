@@ -5,26 +5,16 @@ import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isInsightsHovered, setIsInsightsHovered] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   const navItems = [
     { name: 'Main', href: '/' },
-    { name: 'Services', href: '/services' },
+    { name: 'Porting framework', href: '/services' },
     // { name: 'Case Studies', href: '/case-studies' },
     { name: 'Insights', href: '/insights' },
     { name: 'Careers', href: '/careers' },
-  ];
-
-  const services = [
-    { name: 'Game Development', index: 0 },
-    { name: 'Mobile Games', index: 1 },
-    { name: 'PC & Console', index: 2 },
-    { name: 'VR/AR Games', index: 3 },
-    { name: 'Technical Consulting', index: 4 },
-    { name: 'Game Design', index: 5 }
   ];
 
   const blogPosts = [
@@ -37,10 +27,6 @@ const Navbar = () => {
       return location.pathname === '/';
     }
     return location.pathname.startsWith(href);
-  };
-
-  const handleServiceClick = (serviceIndex: number) => {
-    navigate(`/services?service=${serviceIndex}`);
   };
 
   const handleBlogPostClick = (slug: string) => {
@@ -70,48 +56,6 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
                 const active = isActive(item.href);
-                
-                if (item.name === 'Services') {
-                  return (
-                    <div
-                      key={item.name}
-                      className="relative"
-                      onMouseEnter={() => setIsServicesHovered(true)}
-                      onMouseLeave={() => setIsServicesHovered(false)}
-                    >
-                      <Link
-                        to={item.href}
-                        className={`transition-colors duration-300 font-medium relative group ${
-                          active 
-                            ? 'text-lynx-pink' 
-                            : 'text-gray-300 hover:text-lynx-pink'
-                        }`}
-                      >
-                        {item.name}
-                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-lynx-pink transition-all duration-300 ${
-                          active ? 'w-full' : 'w-0 group-hover:w-full'
-                        }`}></span>
-                      </Link>
-                      
-                      {/* Simple Dropdown List */}
-                      {isServicesHovered && (
-                        <div className="absolute top-full left-0 mt-2 w-48 bg-lynx-gray rounded-lg shadow-lg border border-lynx-pink/20 animate-fade-in">
-                          <div className="py-2">
-                            {services.map((service, index) => (
-                              <button
-                                key={index}
-                                onClick={() => handleServiceClick(service.index)}
-                                className="w-full text-left px-4 py-2 text-gray-300 hover:text-lynx-pink hover:bg-lynx-dark/50 transition-colors duration-300"
-                              >
-                                {service.name}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
                 if (item.name === 'Insights') {
                   return (
                     <div
@@ -196,41 +140,6 @@ const Navbar = () => {
                 {navItems.map((item) => {
                   const active = isActive(item.href);
                   
-                  if (item.name === 'Services') {
-                    return (
-                      <div key={item.name}>
-                        <button
-                          onClick={() => setIsServicesHovered(!isServicesHovered)}
-                          className={`w-full text-left transition-colors duration-300 font-medium py-2 flex items-center justify-between ${
-                            active 
-                              ? 'text-lynx-pink' 
-                              : 'text-gray-300 hover:text-lynx-pink'
-                          }`}
-                        >
-                          <span>{item.name}</span>
-                          <span className="text-lynx-pink">{isServicesHovered ? '−' : '+'}</span>
-                        </button>
-                        
-                        {isServicesHovered && (
-                          <div className="ml-4 mt-2 space-y-2 border-l border-gray-600 pl-4">
-                            {services.map((service, index) => (
-                              <button
-                                key={index}
-                                onClick={() => {
-                                  handleServiceClick(service.index);
-                                  setIsOpen(false);
-                                }}
-                                className="block w-full text-left text-gray-400 hover:text-lynx-pink transition-colors duration-300 py-1"
-                              >
-                                {service.name}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-
                   if (item.name === 'Insights') {
                     return (
                       <div key={item.name}>

@@ -17,6 +17,7 @@ import ExitIntentPopup from "./components/ExitIntentPopup";
 import ScrollToTop from "./components/ScrollToTop";
 import { toast } from "sonner";
 import { Analytics } from '@vercel/analytics/react';
+import Estimator from "./pages/Estymator";
 
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
             <Route path="/insights" element={<Insights />} />
+            <Route path="/estimator" element={<Estimator />} />
             <Route path="/insights/:slug" element={<BlogPost />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />

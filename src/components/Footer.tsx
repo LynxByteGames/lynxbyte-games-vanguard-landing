@@ -45,7 +45,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to="/services" className="text-gray-300 hover:text-lynx-pink transition-colors">
-                    Services
+                    Porting framework
                   </Link>
                 </li>
                 {/* <li>
@@ -68,15 +68,7 @@ const Footer = () => {
 
             {/* Services */}
             <div>
-              <h3 className="text-lg font-bold mb-6">Services</h3>
-              <ul className="space-y-3">
-                <li className="text-gray-300">Game porting</li>
-                <li className="text-gray-300">Full-development</li>
-                <li className="text-gray-300">Co-development</li>
-                <li className="text-gray-300">QA & Localization</li>
-                <li className="text-gray-300">Optimization & Bug fixing</li>
-                <li className="text-gray-300">Release Management</li>
-              </ul>
+              
             </div>
 
             {/* Contact Info */}

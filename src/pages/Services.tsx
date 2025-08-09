@@ -1,59 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import LogoCarousel from '@/components/LogoCarousel';
-import { Gamepad2, Smartphone, Monitor, Headphones, Code, Palette, X, ArrowRight, ChevronDown, ChevronUp, Repeat, Users, CheckCircle, Wrench, UploadCloud } from 'lucide-react';
+import { Gamepad2, Monitor, ChevronDown, ChevronUp, Repeat, Users, CheckCircle, UploadCloud } from 'lucide-react';
 
 const Services = () => {
-  const [selectedService, setSelectedService] = useState<number | null>(null);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
-  const services = [
+  const portingSteps = [
     {
-      icon: <Repeat className="w-8 h-8" />, // Game porting
-      title: 'Game Porting',
-      description: 'Game porting to best platforms like PlayStation, Xbox, Nintendo Switch & PC.',
-      features: ['Porting from PC & Mobile to Consoles', 'Performance optimization', 'Certification & Quality assurance'],
-      detailedDescription: `Our game porting service ensures your title reaches new audiences by adapting it to additional platforms with maximum performance and fidelity. We take your existing game and make it run seamlessly on consoles, mobile devices, or PC, preserving the core experience while optimizing for each system's unique requirements.\n\nOur porting process includes:\n• Pre-contract estimation \n• Platform-specific optimization (graphics, performance, controls)\n• Compliance with certification requirements \n• Rigorous cross-platform testing and QA\n• Support for updates, patches, and post-launch maintenance\n\nWe minimize risk and time-to-market while maximizing technical quality and player experience on every platform.`
+      number: '1',
+      title: 'PROJECT ONBOARD',
+      items: ['Project estimation', 'Contract', 'Repository configuration', 'Engine version upgrade', 'Consoles SDK instalation', 'Game benchmark'],
+      duration: '1 MONTH',
+      icon: <Repeat className="w-6 h-6" />
     },
     {
-      icon: <Gamepad2 className="w-8 h-8" />, // Full development
-      title: 'Full development',
-      description: 'Full-cycle game development from concept to launch across multiple platforms.',
-      features: ['Unity, Unreal Engine & Godot Engine', 'Ready to release development', 'From design to release'],
-      detailedDescription: `Mobile gaming represents the fastest-growing segment in the gaming industry, and we're experts at creating compelling mobile experiences that players love.\n\nOur mobile game development expertise spans both native iOS and Android development, as well as cross-platform solutions that maximize your reach. We understand the unique challenges of mobile gaming, from battery optimization to varying screen sizes and device capabilities.\n\nKey mobile development features:\n• Responsive design for all device sizes\n• Touch gesture optimization and haptic feedback\n• App Store and Google Play optimization\n• In-app purchase and advertising integration\n• Social features and multiplayer capabilities\n• Analytics and user behavior tracking`
+      number: '2',
+      title: 'PERFORMANCE',
+      items: ['RAM Optimization', 'Grafnic, meshses', 'and shaders optimization', 'Adressables/VSM'],
+      duration: '1-2 MONTH(S)',
+      icon: <Monitor className="w-6 h-6" />
     },
     {
-      icon: <Users className="w-8 h-8" />, // Co-development
-      title: 'Co-development',
-      description: 'We work closely with your team to deliver features, content, or technical solutions.',
-      features: ['Feature or module co-development', 'Multiplayer implementation', 'Engine & tools integration'],
-      detailedDescription: `Our experts support your team in key areas: feature development, content updates, or technical problem-solving. We adapt to your workflow and tools, helping you scale up and deliver on time.`
+      number: '3',
+      title: 'CONSOLE FEATURE',
+      items: ['Save system', 'UX/UI changes', 'Full gamepad controlls', 'Vibrations'],
+      duration: '1-3 MONTH(S)',
+      icon: <Gamepad2 className="w-6 h-6" />
     },
     {
-      icon: <CheckCircle className="w-8 h-8" />, // QA & Localization
-      title: 'QA & Localization',
-      description: 'Testing, certification, and localization for global releases.',
-      features: ['FQA, CQA & LQA', 'Game translation', 'Platform compliance'],
-      detailedDescription: `We provide functional, compliance, and localization testing. Our team adapts your game for new languages and markets, ensuring a smooth global launch.`
+      number: '4',
+      title: 'ADDITIONAL',
+      items: ['Multiplayer & Crossplay', 'DLC Implementation', 'WinGDK Version', 'Asian market', 'Localization & Culturalization'],
+      duration: '1-2 MONTH(S)',
+      icon: <Users className="w-6 h-6" />
     },
     {
-      icon: <Wrench className="w-8 h-8" />, // Optimization & Bug fixing
-      title: 'Optimization & Bug fixing',
-      description: 'Performance tuning and bug fixing for new and existing games.',
-      features: ['Performance profiling', 'Bug fixing', 'Code review'],
-      detailedDescription: `We identify and resolve bottlenecks, memory leaks, and bugs. Our team delivers code reviews and technical audits to keep your game running smoothly.`
+      number: '5',
+      title: 'CERTIFICATION',
+      items: ['FQA', 'CQA', 'Bug fixing', 'Certification', 'Post cert fix'],
+      duration: '1 MONTH',
+      icon: <CheckCircle className="w-6 h-6" />
     },
     {
-      icon: <UploadCloud className="w-8 h-8" />, // Release Management
-      title: 'Release Management',
-      description: 'Support for launching, updating, and maintaining your game.',
-      features: ['Store submission', 'Patch management', 'LiveOps support'],
-      detailedDescription: `We handle store submissions, updates, and post-launch support. Our team ensures your game’s success after release with ongoing monitoring and player engagement.`
+      number: '6',
+      title: 'RELEASE',
+      items: ['Release Management', 'Ongoing maintance', 'Updates', 'Bug fixes'],
+      duration: 'GUARANTEE',
+      icon: <UploadCloud className="w-6 h-6" />
     }
   ];
 
@@ -87,10 +83,6 @@ const Services = () => {
       answer: "No. We work exclusively on a per-project or per-feature basis. We provide guarantees and take full responsibility for our work."
     },
     {
-      question: "Can I order QA services for just a few hours?",
-      answer: "Yes. Whether you need 10 hours or 1,500 hours of QA, we’re happy to help in any situation."
-    },
-    {
       question: "Do you work with indie developers and small studios?",
       answer: "Yes! We collaborate with teams of all sizes, from solo indie devs to large studios. Our services are scalable and we can tailor our approach to fit your budget and timeline. We're passionate about turning creative visions into reality."
     },
@@ -104,28 +96,9 @@ const Services = () => {
     }
   ];
 
-  const handleServiceClick = (index: number) => {
-    setSelectedService(index);
-  };
-
-  const handleClose = () => {
-    setSelectedService(null);
-  };
-
   const handleFAQClick = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
-
-  // Handle URL parameter for auto-opening service modal
-  useEffect(() => {
-    const serviceParam = searchParams.get('service');
-    if (serviceParam !== null) {
-      const serviceIndex = parseInt(serviceParam);
-      if (serviceIndex >= 0 && serviceIndex < services.length) {
-        setSelectedService(serviceIndex);
-      }
-    }
-  }, [searchParams]);
 
   return (
     <div className="min-h-screen bg-lynx-dark">
@@ -143,47 +116,202 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div 
-                key={index}
-                onClick={() => handleServiceClick(index)}
-                className="bg-lynx-gray hover:bg-lynx-gray/80 p-8 rounded-2xl transition-all duration-300 hover:scale-105 hover-glow animate-fade-in group cursor-pointer relative overflow-hidden"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-lynx-pink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Game Porting Process Flow */}
+          <div className="relative max-w-7xl mx-auto">
+            {/* Connection Lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ zIndex: 1 }}>
+              <defs>
+                <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,8 L12,4 z" fill="#EC4899" />
+                </marker>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                  <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              
+              {/* Desktop connections - hidden on mobile */}
+              <g className="hidden lg:block">
+                {/* Top row: 1 → 2 → 3 */}
+                <path 
+                  d="M 28% 20% Q 33% 18% 38% 20%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2.5" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.9"
+                />
+                <path 
+                  d="M 61% 20% Q 66% 18% 71% 20%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2.5" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.9"
+                />
                 
-                <div className="relative z-10">
-                  <div className="text-lynx-pink mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
+                {/* Connection from 3 to 4 - curved path */}
+                <path 
+                  d="M 85% 35% Q 95% 45% 90% 55% Q 85% 65% 15% 65%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2.5" 
+                  fill="none" 
+                  strokeDasharray="6,4"
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+                
+                {/* Bottom row: 4 → 5 → 6 */}
+                <path 
+                  d="M 28% 80% Q 33% 78% 38% 80%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2.5" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.9"
+                />
+                <path 
+                  d="M 61% 80% Q 66% 78% 71% 80%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2.5" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.9"
+                />
+              </g>
+              
+              {/* Mobile/Tablet connections - visible only on smaller screens */}
+              <g className="lg:hidden">
+                {/* Vertical flowing connections for mobile */}
+                <path 
+                  d="M 50% 15% Q 55% 20% 50% 25%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+                <path 
+                  d="M 50% 35% Q 45% 40% 50% 45%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+                <path 
+                  d="M 50% 55% Q 55% 60% 50% 65%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+                <path 
+                  d="M 50% 75% Q 45% 80% 50% 85%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+                <path 
+                  d="M 50% 95% Q 55% 100% 50% 105%" 
+                  stroke="#EC4899" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  markerEnd="url(#arrowhead)"
+                  filter="url(#glow)"
+                  opacity="0.8"
+                />
+              </g>
+              
+              {/* Animated dots along paths */}
+              <circle r="3" fill="#EC4899" opacity="0.6">
+                <animateMotion dur="8s" repeatCount="indefinite">
+                  <path d="M 28% 20% Q 33% 18% 38% 20%"/>
+                </animateMotion>
+              </circle>
+              <circle r="3" fill="#EC4899" opacity="0.6">
+                <animateMotion dur="10s" repeatCount="indefinite">
+                  <path d="M 85% 35% Q 95% 45% 90% 55% Q 85% 65% 15% 65%"/>
+                </animateMotion>
+              </circle>
+            </svg>
+
+            {/* Process Steps Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative" style={{ zIndex: 2 }}>
+              {portingSteps.map((step, index) => (
+                <div 
+                  key={index}
+                  className="bg-lynx-gray/90 backdrop-blur-sm p-6 rounded-xl transition-all duration-300 hover:scale-105 hover-glow animate-fade-in group cursor-pointer relative overflow-hidden border border-lynx-pink/20 hover:border-lynx-pink/50"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  {/* Connection Node */}
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-lynx-pink rounded-full opacity-70 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 shadow-lg shadow-lynx-pink/50">
+                    <div className="absolute inset-0 bg-lynx-pink rounded-full animate-ping opacity-30"></div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-lynx-pink transition-colors duration-300">
-                    {service.title}
-                  </h3>
+                  {/* Step Number and Title */}
+                  <div className="mb-4">
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      {step.number}. {step.title}
+                    </h3>
+                  </div>
                   
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-
+                  {/* Step Items */}
                   <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-sm text-gray-400 flex items-center">
-                        <div className="w-1.5 h-1.5 bg-lynx-pink rounded-full mr-3"></div>
-                        {feature}
+                    {step.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="text-sm text-gray-300 flex items-start">
+                        <div className="w-1.5 h-1.5 bg-lynx-pink rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* Learn more button */}
-                  <div className="flex items-center text-lynx-pink group-hover:text-white transition-colors duration-300">
-                    <span className="text-sm font-medium">Learn More</span>
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  {/* Duration Badge */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-lynx-pink">
+                      <div className="w-5 h-5 mr-2">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                      </div>
+                      <span className="text-xs font-semibold">{step.duration}</span>
+                    </div>
+                    {step.duration === 'GUARANTEE' && (
+                      <div className="text-lynx-pink">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </div>
+                    )}
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Process Summary */}
+            <div className="mt-12 text-center">
+              <div className="bg-lynx-gray/50 backdrop-blur-sm rounded-2xl p-8 border border-lynx-pink/20">
+                <h3 className="text-2xl font-bold text-white mb-4">Complete Game Porting Process</h3>
+                <p className="text-gray-300 text-lg">
+                  Our comprehensive 6-step porting process ensures your game reaches new platforms with optimal performance and full compliance.
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -336,65 +464,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Modal Overlay */}
-      {selectedService !== null && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-lynx-gray rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-lynx-pink/20 animate-scale-in">
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex items-center">
-                  <div className="text-lynx-pink mr-4">
-                    {services[selectedService].icon}
-                  </div>
-                  <h2 className="text-3xl font-bold text-white">
-                    {services[selectedService].title}
-                  </h2>
-                </div>
-                <button
-                  onClick={handleClose}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 p-2 hover:bg-gray-700 rounded-lg"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
 
-              <div className="text-gray-300 leading-relaxed whitespace-pre-line mb-8">
-                {services[selectedService].detailedDescription}
-              </div>
-
-              <div className="border-t border-gray-600 pt-6">
-                <h4 className="text-xl font-bold text-lynx-pink mb-4">Key Features</h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {services[selectedService].features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center bg-lynx-dark/50 p-3 rounded-lg">
-                      <div className="w-2 h-2 bg-lynx-pink rounded-full mr-3"></div>
-                      <span className="text-gray-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8 flex justify-end">
-                {selectedService === 2 ? (
-                  <button
-                    onClick={() => window.open('https://www.skillshot.pl/jobs/36884-general-game-developer-unity-unreal-porting-specia', '_blank')}
-                    className="bg-lynx-pink hover:bg-lynx-pink/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-                  >
-                    Work with us
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => navigate('/contact')}
-                    className="bg-lynx-pink hover:bg-lynx-pink/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-                  >
-                    Work with us
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Contact />
       <Footer />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gamepad2, Users, CheckCircle, Globe, Wrench, UploadCloud, Repeat } from 'lucide-react';
+import { Repeat, ArrowRight, Zap, Shield, Target, Clock, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ServicesList = () => {
@@ -9,36 +9,21 @@ const ServicesList = () => {
     navigate('/services');
   };
 
-  const services = [
+  const features = [
     {
-      icon: <Repeat className="w-12 h-12 text-lynx-pink" />, // Game porting
-      title: 'Game porting',
-      description: 'Porting your game to new platforms and devices.'
+      icon: <Target className="w-6 h-6 text-lynx-pink" />,
+      title: 'Multi-Platform Support',
+      description: 'PlayStation, Xbox, Nintendo Switch, PC, Mobile'
     },
     {
-      icon: <Gamepad2 className="w-12 h-12 text-lynx-pink" />, // Full-development
-      title: 'Full-development',
-      description: 'Complete game development from idea to launch.'
+      icon: <Clock className="w-6 h-6 text-lynx-pink" />,
+      title: 'Fast Delivery',
+      description: 'From weeks to months depending on complexity'
     },
     {
-      icon: <Users className="w-12 h-12 text-lynx-pink" />, // Co-development
-      title: 'Co-development',
-      description: 'Collaborative game development with your team.'
-    },
-    {
-      icon: <CheckCircle className="w-12 h-12 text-lynx-pink" />, // QA & Localization
-      title: 'QA & Localization',
-      description: 'Quality assurance and localization for global reach.'
-    },
-    {
-      icon: <Wrench className="w-12 h-12 text-lynx-pink" />, // Optimization & Bug fixing
-      title: 'Optimization & Bug fixing',
-      description: 'Performance optimization and bug fixing.'
-    },
-    {
-      icon: <UploadCloud className="w-12 h-12 text-lynx-pink" />, // Release Management
-      title: 'Release Management',
-      description: 'Managing and supporting your game releases.'
+      icon: <Award className="w-6 h-6 text-lynx-pink" />,
+      title: '100% Success Rate',
+      description: 'Full refund guarantee if port fails'
     }
   ];
 
@@ -48,25 +33,61 @@ const ServicesList = () => {
         <div className="container-width">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black mb-6">
-              OUR <span className="text-lynx-pink">SERVICES</span>
+              GAME <span className="text-lynx-pink">PORTING</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We offer comprehensive game development services to bring your vision to life
+              We bring your games to every platform with guaranteed success and optimal performance
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                onClick={handleServiceClick}
-                className="bg-lynx-dark p-8 rounded-2xl hover:bg-lynx-pink/5 transition-all duration-300 hover-glow cursor-pointer hover:scale-105"
-              >
-                <div className="mb-6">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{service.description}</p>
+          {/* Main Game Porting Service */}
+          <div className="max-w-4xl mx-auto">
+            <div 
+              onClick={handleServiceClick}
+              className="bg-lynx-dark p-12 rounded-2xl hover:bg-lynx-pink/5 transition-all duration-300 hover-glow cursor-pointer hover:scale-105 relative overflow-hidden border border-transparent hover:border-lynx-pink/30 group"
+            >
+              {/* Background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-lynx-pink/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                {/* Main icon */}
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-lynx-pink/20 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Repeat className="w-10 h-10 text-lynx-pink" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4 group-hover:text-lynx-pink transition-colors duration-300">
+                    Game Porting Services
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    Professional game porting to all major platforms. From PC to consoles, mobile to cloud gaming - we ensure your game reaches every player, everywhere.
+                  </p>
+                </div>
+
+                {/* Features grid */}
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
+                  {features.map((feature, index) => (
+                    <div key={index} className="text-center">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-lynx-pink/10 rounded-full mb-4 group-hover:bg-lynx-pink/20 transition-colors duration-300">
+                        {feature.icon}
+                      </div>
+                      <h4 className="text-lg font-semibold mb-2">{feature.title}</h4>
+                      <p className="text-gray-400 text-sm">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Call to action */}
+                <div className="text-center">
+                  <div className="inline-flex items-center text-lynx-pink group-hover:text-white transition-colors duration-300">
+                    <Zap className="w-5 h-5 mr-2" />
+                    <span className="text-lg font-semibold mr-3">Learn More About Our Process</span>
+                    <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+
+
           </div>
         </div>
       </div>
