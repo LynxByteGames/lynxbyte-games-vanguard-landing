@@ -59,10 +59,6 @@ const Services = () => {
       answer: "It depends on the size of the game, code quality, and required UX/UI changes. Each game is priced individually, but costs typically range from €15,000 to €250,000. The porting process can take anywhere from a few weeks to up to a year. Our record? A full port in under a week! If you'd like a quote - reach out and we'll provide a free detailed estimate."
     },
     {
-      question: "Do you port games to Nintendo Switch 2?",
-      answer: "Yes, we do. The challenge is not the development itself, but the publishing. Nintendo currently places heavy restrictions on releasing games for that platform. However, we can assist you throughout the entire process."
-    },
-    {
       question: "Do you provide ongoing support after the game launch?",
       answer: "Yes, we offer comprehensive post-launch support including bug fixes, performance and content updates, server maintenance, analytics, and player feedback analysis to help optimize your game."
     },

@@ -98,7 +98,7 @@ const Index = () => {
       const discordResult = await sendToDiscord(email);
       
       // Open pitch deck in new tab
-      window.open('https://drive.google.com/file/d/1EHUYC-tnpvjPUZHQ8CXd610rDaYgleR1/view?usp=sharing', '_blank');
+      //window.open('https://drive.google.com/file/d/1EHUYC-tnpvjPUZHQ8CXd610rDaYgleR1/view?usp=sharing', '_blank');
       
       toast.success('Thank you for your interest! We will send your pitch deck shortly. ');
       
