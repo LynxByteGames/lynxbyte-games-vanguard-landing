@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 
 
 const Index = () => {
@@ -117,6 +118,43 @@ const Index = () => {
 
       <Navbar />
       <Hero />
+      {/* EasyGamePort Promo Section */}
+      <section className="relative py-12 section-padding bg-lynx-dark overflow-hidden">
+        {/* subtle glow accents */}
+        <div className="absolute -top-24 -left-24 w-80 h-80 bg-lynx-pink/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 w-[28rem] h-[28rem] bg-lynx-pink/10 rounded-full blur-3xl" />
+        <div className="container-width relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-8 p-6 lg:p-10 rounded-2xl border border-lynx-pink/30 bg-lynx-dark/60 shadow-[0_0_32px_#ff2e9a22]">
+            <div className="flex-1 text-center lg:text-center">
+              <span className="inline-block text-xs tracking-widest uppercase text-lynx-pink/90 border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1">NEW</span>
+              <h2 className="mt-3 text-3xl lg:text-4xl font-black text-white">
+                EasyGamePort - one plugin to port your game to consoles
+              </h2>
+              <p className="mt-3 text-gray-300 text-base lg:text-lg">
+                Open‑source plugin that automates the repetitive work of console ports: saves, input, achievements/trophies and more. Ship faster, with lower cost.
+              </p>
+              <div className="mt-4 flex justify-center">
+                <span className="inline-block text-sm md:text-base text-white border border-lynx-pink/50 bg-lynx-pink/10 rounded-full px-4 py-2 shadow-[0_0_24px_#ff2e9a33]">
+                RIGHT NOW WE ARE LOOKING FOR GAMES TO FREE PORTING
+                </span>
+              </div>
+              <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-center">
+                <Link to="/easygameport" className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-lynx-pink text-white font-semibold hover:bg-lynx-pink-hover transition shadow-[0_0_16px_#ff2e9a55]">
+                  Explore EasyGamePort
+                </Link>
+                <Link to="/easygameport#apply" className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition">
+                  Apply for free port
+                </Link>
+              </div>
+              <div className="mt-4 flex items-center gap-4 opacity-80 justify-center lg:justify-center">
+                <img src="/lovable-uploads/play-station.png" alt="PlayStation" className="h-6 w-auto" />
+                <img src="/lovable-uploads/consoles-xbox-512.png" alt="Xbox" className="h-6 w-auto" />
+                <img src="/lovable-uploads/Nintendo.webp" alt="Nintendo Switch" className="h-6 w-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <LogoCarousel/>
       <AboutUs />
 

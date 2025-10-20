@@ -18,6 +18,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { toast } from "sonner";
 import { Analytics } from '@vercel/analytics/react';
 import Estimator from "./pages/Estymator";
+import EasyGamePort from "./pages/EasyGamePort";
 
 
 const queryClient = new QueryClient();
@@ -53,6 +54,8 @@ const App = () => {
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pitchdeck" element={<PitchDeck />} />
+            <Route path="/easygameport" element={<EasyGamePort />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

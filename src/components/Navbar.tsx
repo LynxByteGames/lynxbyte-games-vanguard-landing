@@ -11,6 +11,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Main', href: '/' },
+    { name: 'EasyGamePort', href: '/easygameport', featured: true },
     { name: 'Porting framework', href: '/services' },
     // { name: 'Case Studies', href: '/case-studies' },
     { name: 'Insights', href: '/insights' },
@@ -56,6 +57,20 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
                 const active = isActive(item.href);
+                if ((item as any).featured) {
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`relative inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-lynx-pink to-lynx-pink-hover shadow-lg shadow-lynx-pink/30 ring-2 ${active ? 'ring-lynx-pink' : 'ring-lynx-pink/40'} hover:scale-105 hover:shadow-lynx-pink/50 transition-all`}
+                    >
+                      <span>{item.name}</span>
+                      <span className="text-[10px] leading-none bg-lynx-dark text-lynx-pink border border-lynx-pink/50 px-2 py-1 rounded-full animate-pulse">
+                        NEW
+                      </span>
+                    </Link>
+                  );
+                }
                 if (item.name === 'Insights') {
                   return (
                     <div
@@ -140,6 +155,21 @@ const Navbar = () => {
                 {navItems.map((item) => {
                   const active = isActive(item.href);
                   
+                  if ((item as any).featured) {
+                    return (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={`block text-center transition-colors duration-300 font-semibold py-3 rounded-full text-white bg-gradient-to-r from-lynx-pink to-lynx-pink-hover shadow-lg shadow-lynx-pink/30 ring-2 ${active ? 'ring-lynx-pink' : 'ring-lynx-pink/40'} hover:scale-[1.02] hover:shadow-lynx-pink/50 transition-transform`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span className="mr-2">{item.name}</span>
+                        <span className="text-[10px] leading-none bg-lynx-dark text-lynx-pink border border-lynx-pink/50 px-2 py-1 rounded-full align-middle">
+                          NEW
+                        </span>
+                      </Link>
+                    );
+                  }
                   if (item.name === 'Insights') {
                     return (
                       <div key={item.name}>

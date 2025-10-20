@@ -313,7 +313,6 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                     checked={formData.acceptPrivacy}
                     onCheckedChange={(checked) => handleCheckboxChange('acceptPrivacy', checked as boolean)}
                     className="mt-1 flex-shrink-0"
-                    required
                   />
                   <label htmlFor="privacy" className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                     *I have read and accept the Privacy Policy and Terms & Conditions.
