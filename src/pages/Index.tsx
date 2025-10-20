@@ -128,14 +128,14 @@ const Index = () => {
             <div className="flex-1 text-center lg:text-center">
               <span className="inline-block text-xs tracking-widest uppercase text-lynx-pink/90 border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1">NEW</span>
               <h2 className="mt-3 text-3xl lg:text-4xl font-black text-white">
-                EasyGamePort - one plugin to port your game to consoles
+                EasyGamePort - a single plugin that will port your game to consoles.
               </h2>
               <p className="mt-3 text-gray-300 text-base lg:text-lg">
                 Open‑source plugin that automates the repetitive work of console ports: saves, input, achievements/trophies and more. Ship faster, with lower cost.
               </p>
               <div className="mt-4 flex justify-center">
-                <span className="inline-block text-sm md:text-base text-white border border-lynx-pink/50 bg-lynx-pink/10 rounded-full px-4 py-2 shadow-[0_0_24px_#ff2e9a33]">
-                RIGHT NOW WE ARE LOOKING FOR GAMES TO FREE PORTING
+                <span className="inline-block text-sm md:text-base uppercase text-white border border-lynx-pink/50 bg-lynx-pink/10 rounded-full px-4 py-2 shadow-[0_0_24px_#ff2e9a33]">
+                WE’RE currently looking for games to port.
                 </span>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-center">

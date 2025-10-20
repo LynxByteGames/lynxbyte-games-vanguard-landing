@@ -16,8 +16,7 @@ Our mission is to boost game sales by bringing titles to multiple platforms and 
 
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
-            Our team of passionate developers thrives on the toughest projects - the ones other studios shy away from. We don’t. Our motto is: We play together, we win together.
-            </p>
+            Our team of passionate developers thrives on the toughest & most challenging projects - the ones other studios shy away from. We don’t. Our motto is: We play together, we win together.            </p>
           </div>
         </div>
       </div>

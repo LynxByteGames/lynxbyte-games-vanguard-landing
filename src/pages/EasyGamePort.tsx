@@ -172,7 +172,7 @@ const EasyGamePort = () => {
             </span>
           </span>
           <h1 className="mt-3 text-4xl md:text-6xl font-black text-white leading-[1.1]">
-            One plugin that will port your game to console
+          A single plugin that will port your game to consoles.
           </h1>
           <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
           EasyGamePort is an open-source plugin that fully automates the technical aspects of game porting. It handles the implementation of save systems, controls, achievements/trophies, console activity, and much more, enabling game developers with no porting experience to independently bring their games to consoles at minimal cost.
@@ -186,7 +186,7 @@ const EasyGamePort = () => {
             <a href="#apply" className="inline-block text-sm md:text-base text-white border border-lynx-pink/50 bg-lynx-pink/10 rounded-full px-4 py-2 shadow-[0_0_24px_#ff2e9a33] hover:bg-lynx-pink/15 transition">
               <span className="inline-flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-lynx-pink" aria-hidden="true" />
-                <strong className="text-white text-xl">RIGHT NOW WE ARE LOOKING FOR GAMES TO FREE PORT</strong>
+                <strong className="text-white text-xl uppercase">WE’RE currently looking for games to port.</strong>
                 <Brain className="w-4 h-4 text-lynx-pink" aria-hidden="true" />
               </span>
             </a>
@@ -318,28 +318,28 @@ const EasyGamePort = () => {
           <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-white">What you get out‑of‑the‑box</h3>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">Placeholder title #1</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">AI‑first platform</h4>
+              <p className="text-gray-300 mt-2 text-sm">Built‑in AI agent that guides setup, checks requirements and handles details.</p>
             </div>
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">Placeholder title #2</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">Save system and slot management</h4>
+              <p className="text-gray-300 mt-2 text-sm">Robust save/load with profiles, compliant paths and size limits baked in.</p>
             </div>
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Placeholder title #3</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">Controller input mapping</h4>
+              <p className="text-gray-300 mt-2 text-sm">Unified input layer with rumble, glyphs and deadzone presets out of the box.</p>
             </div>
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Placeholder title #4</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">Achievements / Trophies scaffolding</h4>
+              <p className="text-gray-300 mt-2 text-sm">Ready-to-wire events, IDs and UI helpers to integrate fast.</p>
             </div>
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Placeholder title #5</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">Console activities & presence</h4>
+              <p className="text-gray-300 mt-2 text-sm">Hooks for activities, rich presence and platform-specific UX signals.</p>
             </div>
             <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Placeholder title #6</h4>
-              <p className="text-gray-300 mt-2 text-sm">Short placeholder description for this key detail.</p>
+              <h4 className="text-white font-semibold">Certification checklist helpers</h4>
+              <p className="text-gray-300 mt-2 text-sm">Step‑by‑step checks and guards to help you pass TRC/XR/LOT.</p>
             </div>
           </div>
         </div>
@@ -380,7 +380,7 @@ const EasyGamePort = () => {
               <p className="text-gray-300 mt-2 text-sm">For small teams publishing their port independent</p>
               <ul className="mt-4 space-y-2 text-gray-300 text-sm flex-1">
                 <li>Include opensource features</li>
-                <li>SLA 1h</li>
+                <li></li>
                 <li> </li>
               </ul>
               <a href="#" className="mt-6 inline-block text-center px-4 py-2 rounded-full bg-lynx-pink text-white hover:bg-lynx-pink-hover transition shadow-[0_0_10px_#ff2e9a44]">Contact sales</a>
@@ -394,8 +394,9 @@ const EasyGamePort = () => {
               <p className="text-gray-300 mt-2 text-sm">For studios and publishers over $200,000 revenue</p>
               <ul className="mt-4 space-y-2 text-gray-300 text-sm flex-1">
                 <li>Include opensource features</li>
-                <li>SLA 4h</li>
                 <li>Certification support</li>
+                <li> </li>
+
               </ul>
               <a href="#" className="mt-6 inline-block text-center px-4 py-2 rounded-full bg-lynx-pink text-white hover:bg-lynx-pink-hover transition shadow-[0_0_10px_#ff2e9a44]">Contact sales</a>
               <p className="mt-2 text-xs text-white font-semibold">Pay only when you earn</p>
@@ -445,11 +446,11 @@ const EasyGamePort = () => {
           <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
             <h4 className="text-white font-bold text-lg">Requirements</h4>
             <ul className="mt-3 space-y-2 text-gray-300 text-sm list-disc list-inside">
-              <li>Unity or Uneal engine</li>
-              <li>Realase game on Steam or one of the consoles</li>
+              <li>Unity or Unreal engine</li>
+              <li>Release game on Steam or one of the consoles</li>
               <li>Implemented controls using Rewired, Unity Input System or Unreal Input System</li>
               <li>No multiplayer or crossplay features</li>
-              <li>No needed to optimize</li>
+              <li>No need to optimize</li>
               <li>No major bugs or crashes in the build</li>
             </ul>
             <p className="text-gray-400 text-sm mt-4">Don’t worry if you don’t complete all the requirements, feel free to apply and we'll discuss the details.</p>

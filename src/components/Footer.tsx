@@ -86,7 +86,7 @@ const Footer = () => {
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-lynx-pink mt-1" />
                   <span className="text-gray-300">
-                    Carcow, Poland<br />
+                    Kraków, Poland<br />
                     Zamknięta 10/1.5 30-544 Kraków
                   </span>
                 </div>
