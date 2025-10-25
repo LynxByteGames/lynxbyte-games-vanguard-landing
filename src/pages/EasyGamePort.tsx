@@ -1185,7 +1185,16 @@ const EasyGamePort = () => {
 
               
 
-              
+              <div class="ml-form-checkboxRow ml-validate-required">
+                
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    <div class="label-description">
+                      <p><span style="font-size: 10px;">*I have read and accept the Privacy Policy and Terms & Conditions. I agree to receive information about products, services, promotions and news from LYNXBYTE GAMES PSA, based in Poland and its related entities, including other companies from the gaming group, at the provided email address.<span style="font-size: 10px;"></span></span></p>
+                    </div>
+                  </label>
+                
+              </div>
 
 
 
@@ -1243,19 +1252,6 @@ const EasyGamePort = () => {
         </script>`
                   }}
                 />
-                <div className="mt-4">
-                  <div className="flex items-start space-x-3">
-                    <input
-                      type="checkbox"
-                      id="newsletter-privacy"
-                      required
-                      className="mt-1 flex-shrink-0 w-4 h-4 text-lynx-pink bg-lynx-dark border-lynx-pink/40 rounded focus:ring-lynx-pink focus:ring-2"
-                    />
-                    <label htmlFor="newsletter-privacy" className="text-xs text-gray-300 leading-relaxed">
-                      *I have read and accept the Privacy Policy and Terms & Conditions. I agree to receive information about products, services, promotions and news from LYNXBYTE GAMES PSA, based in Poland and its related entities, including other companies from the gaming group, at the provided email address.
-                    </label>
-                  </div>
-                </div>
                 <div id="newsletter-success" className="mt-4 p-3 bg-green-500/20 border border-green-500/40 rounded-lg text-green-300 text-sm hidden">
                   ✅ Thank you! You have successfully subscribed to our newsletter.
                 </div>
