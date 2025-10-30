@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isInsightsHovered, setIsInsightsHovered] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isEasyGamePort = location.pathname.startsWith('/easygameport');
 
   const navItems = [
     { name: 'Main', href: '/' },
@@ -38,19 +39,30 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-lynx-dark/90 backdrop-blur-md border-b border-lynx-gray">
       <div className="section-padding">
         <div className="container-width">
-          <div className="flex items-center justify-between h-20">
+          <div className={`flex items-center justify-between ${isEasyGamePort ? 'h-24' : 'h-20'}`}>
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-4 group">
-              <img 
-                src="/lovable-uploads/SYGNET-białe.png" 
-                alt="Lynxbyte Games Symbol" 
-                className="h-16 w-auto"
-              />
-              <img 
-                src="/lovable-uploads/NAPISY-białe.png" 
-                alt="Lynxbyte Games Text" 
-                className="h-8 w-auto"
-              />
+              {isEasyGamePort ? (
+                <img
+                  src="/lovable-uploads/easygameportlogo.png"
+                  alt="EasyGamePort logo"
+                  className="h-32 md:h-28 lg:h-32 w-auto"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                />
+              ) : (
+                <>
+                  <img 
+                    src="/lovable-uploads/SYGNET-białe.png" 
+                    alt="Lynxbyte Games Symbol" 
+                    className="h-16 w-auto"
+                  />
+                  <img 
+                    src="/lovable-uploads/NAPISY-białe.png" 
+                    alt="Lynxbyte Games Text" 
+                    className="h-8 w-auto"
+                  />
+                </>
+              )}
             </Link>
 
             {/* Desktop Navigation */}
