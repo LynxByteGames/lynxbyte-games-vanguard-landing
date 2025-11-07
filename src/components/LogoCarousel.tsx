@@ -15,11 +15,9 @@ const LogoCarousel: React.FC = () => {
     { id: 2, name: "Company 2", image: "lovable-uploads/2.png" },
     { id: 3, name: "Company 3", image: "lovable-uploads/3.jpg" },
     { id: 4, name: "Company 4", image: "lovable-uploads/4.png" },
-    { id: 5, name: "Company 5", image: "lovable-uploads/5.png" },
-    { id: 6, name: "Company 6", image: "lovable-uploads/6.svg" },
-    { id: 7, name: "Company 7", image: "lovable-uploads/7.svg" },
-    { id: 8, name: "Company 8", image: "lovable-uploads/gms.png" },
-    { id: 9, name: "Company 9", image: "lovable-uploads/9.avif" },
+    { id: 5, name: "Company 5", image: "lovable-uploads/6.svg" },
+    { id: 6, name: "Company 6", image: "lovable-uploads/7.svg" },
+    { id: 7, name: "Company 7", image: "lovable-uploads/9.avif" },
   ];
 
   // Zasady tła wg wytycznych:
