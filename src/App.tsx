@@ -55,6 +55,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/pitchdeck" element={<PitchDeck />} />
             <Route path="/easygameport" element={<EasyGamePort />} />
+            <Route path="/easygameport/requirements" element={<EasyGamePort />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>

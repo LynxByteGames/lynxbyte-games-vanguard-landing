@@ -9,8 +9,10 @@ import { toast } from 'sonner';
 import { Checkbox } from '@/components/ui/checkbox';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '@/config/emailjs';
+import { useLocation } from 'react-router-dom';
 
 const EasyGamePort = () => {
+  const location = useLocation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [game, setGame] = useState('');
@@ -19,11 +21,40 @@ const EasyGamePort = () => {
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [acceptMarketing, setAcceptMarketing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [requirementsEmail, setRequirementsEmail] = useState('');
+  const [requirementsUnlocked, setRequirementsUnlocked] = useState(false);
 
   // Initialize EmailJS
   useEffect(() => {
     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
   }, []);
+
+  // Scroll/focus helper for Requirements section
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const shouldFocus =
+      location.pathname.endsWith('/requirements') ||
+      location.hash === '#requirements-offer' ||
+      params.get('focus') === 'requirements';
+
+    if (!shouldFocus) return;
+
+    const scrollAndFocus = () => {
+      const section = document.getElementById('requirements-offer');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      const input = document.getElementById('requirements-email') as HTMLInputElement | null;
+      if (input) {
+        input.focus({ preventScroll: true });
+      }
+    };
+
+    // Defer until after render/animations
+    const timer = setTimeout(scrollAndFocus, 50);
+    return () => clearTimeout(timer);
+    // re-run on location change
+  }, [location]);
 
   // Send to Discord webhook (mirrors main Contact form style)
   const sendToDiscord = async () => {
@@ -54,6 +85,44 @@ const EasyGamePort = () => {
     } catch {
       return false;
     }
+  };
+
+  // Notify Discord when requirements link is unlocked
+  const sendRequirementsUnlockToDiscord = async (unlockEmail: string) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1393033317586047006/6fMJG91n-5HxZA-gonKFbbqIHlbCUHg6XQaRpsesDwbMF0oogooCjahwT_n1AiWwnEbL';
+    const embed = {
+      title: '📄 Requirements & Offer Unlocked',
+      color: 0xff2e9a,
+      fields: [
+        { name: '📧 Email', value: unlockEmail || 'Not provided', inline: true },
+        { name: '⏰ Timestamp', value: new Date().toLocaleString('pl-PL'), inline: true }
+      ],
+      footer: { text: 'EasyGamePort Requirements Unlock' },
+      timestamp: new Date().toISOString()
+    };
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ embeds: [embed] })
+      });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleRevealRequirements = (e: React.FormEvent) => {
+    e.preventDefault();
+    const isValid = /^\S+@\S+\.\S+$/.test(requirementsEmail);
+    if (!isValid) {
+      toast.error('Please enter a valid email address to reveal the link.');
+      return;
+    }
+    setRequirementsUnlocked(true);
+    toast.success('Link unlocked. You can open the document now.');
+    // Fire-and-forget Discord notification (non-blocking for UX)
+    sendRequirementsUnlockToDiscord(requirementsEmail);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -172,15 +241,15 @@ const EasyGamePort = () => {
             </span>
           </span>
           <h1 className="mt-3 text-4xl md:text-6xl font-black text-white leading-[1.1]">
-          A single plugin that will port your game to consoles.
+          Console ports without a big upfront fee.
           </h1>
           <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-          EasyGamePort is an open-source plugin that fully automates the technical aspects of game porting. It handles the implementation of save systems, controls, achievements/trophies, console activity, and much more, enabling game developers with no porting experience to independently bring their games to consoles at minimal cost.
+          EasyGamePort is our in‑house automation we use during console ports. It handles saves, input, achievements/trophies, console activities and more for Unity & Unreal — so you get a high‑quality port faster while avoiding a large upfront flat fee.
 
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <a href="#how" className="px-6 py-3 rounded-full bg-lynx-pink text-white font-semibold hover:bg-lynx-pink-hover transition">See how it works</a>
-            <a href="#apply" className="px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition">Apply for free port</a>
+            <a href="#apply" className="px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition">Apply for port</a>
           </div>
           <div className="mt-6 flex flex-col items-center gap-2">
             <a href="#apply" className="inline-block text-sm md:text-base text-white border border-lynx-pink/50 bg-lynx-pink/10 rounded-full px-4 py-2 shadow-[0_0_24px_#ff2e9a33] hover:bg-lynx-pink/15 transition">
@@ -190,7 +259,6 @@ const EasyGamePort = () => {
                 <Brain className="w-4 h-4 text-lynx-pink" aria-hidden="true" />
               </span>
             </a>
-            <span className="text-xs text-gray-400">Limited to 5 titles this quarter</span>
             {/* Logos row */}
             <div className="mt-3 flex items-center justify-center gap-6 opacity-80">
               {/* Unity */}
@@ -227,34 +295,145 @@ const EasyGamePort = () => {
         </div>
       </section>
 
+      {/* Requirements & Offer (email-gated link) */}
+      <section id="requirements-offer" className="section-padding py-12" data-animate>
+        <div data-animate className="container-width max-w-6xl opacity-0 translate-y-4 transition-all duration-700 mx-auto">
+          <div className="text-center">
+            <span className="inline-block text-lynx-pink font-semibold tracking-wide uppercase border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1 shadow-[0_0_24px_#ff2e9a22]">Requirements & Offer</span>
+            <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-white">Requirements & Offer</h3>
+            <p className="mt-3 text-gray-300 max-w-3xl mx-auto text-sm md:text-base">
+              A concise, skimmable PDF with platform requirements, a readiness checklist, timelines and our collaboration model. Enter your email to unlock instant access.
+            </p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+       
+              <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">~2 min read</span>
+              <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">Updated Nov 2025</span>
+            </div>
+          </div>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {/* Visual card */}
+            <div className="p-0 rounded-2xl border border-lynx-pink/30 bg-lynx-dark/60 ring-1 ring-lynx-pink/20 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/50 hover:shadow-[0_0_28px_#ff2e9a33] relative">
+              <img
+                src="/lovable-uploads/image copy.png"
+                alt="Requirements & Offer"
+                className="w-full h-full object-cover min-h-[16rem] md:min-h-[22rem]"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/lovable-uploads/gamescom_blogphoto.webp'; }}
+              />
+              {!requirementsUnlocked && (
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex items-center justify-center">
+                  <div className="text-center px-6">
+                    <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white animate-pulse">✉️</div>
+                    <p className="text-white font-semibold">Get instant access</p>
+                    <p className="text-gray-200/80 text-xs mt-1">Enter your email to unlock the Requirements & Offer PDF</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Unlock form */}
+            <div className="p-6 rounded-2xl border border-lynx-pink/30 bg-lynx-dark/60 ring-1 ring-lynx-pink/20 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/50 hover:shadow-[0_0_28px_#ff2e9a33]">
+              <div>
+                <h4 className="text-white font-semibold text-lg">Requirements & Offer</h4>
+                <p className="mt-1 text-gray-300 text-sm">Unity & Unreal • PlayStation • Xbox • Switch</p>
+              </div>
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-xl border border-white/10 bg-black/20 p-3">
+                  <p className="text-white text-sm font-medium">What’s inside</p>
+                  <ul className="mt-2 space-y-1.5 text-gray-300 text-xs list-disc list-inside">
+                    <li>Platform requirements</li>
+                    <li>Readiness checklist</li>
+                    <li>Timeline & milestones</li>
+                    <li>Collaboration model</li>
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-black/20 p-3">
+                  <p className="text-white text-sm font-medium">Why it matters</p>
+                  <ul className="mt-2 space-y-1.5 text-gray-300 text-xs list-disc list-inside">
+                    <li>Know what’s needed to start</li>
+                    <li>Plan scope with clarity</li>
+                    <li>Reduce time to certification</li>
+                    <li>Lower upfront costs</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="my-4 h-px bg-white/10" />
+              <h4 className="text-white font-semibold text-lg">Get instant access</h4>
+              {!requirementsUnlocked ? (
+                <form className="mt-4 space-y-4" onSubmit={handleRevealRequirements}>
+                  <div>
+                    <label className="text-sm text-gray-300">Email</label>
+                    <Input
+                      type="email"
+                      id="requirements-email"
+                      className="mt-1 bg-white text-gray-900"
+                      placeholder="you@studio.com"
+                      value={requirementsEmail}
+                      onChange={(e) => setRequirementsEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <Button type="submit" className="w-full bg-lynx-pink hover:bg-lynx-pink-hover text-white shadow-[0_0_14px_#ff2e9a55] hover:shadow-[0_0_20px_#ff2e9a77]">
+                    Reveal download link (PDF)
+                  </Button>
+                  <p className="text-xs text-gray-400">
+                    Instant unlock. No spam. Unsub anytime.
+                  </p>
+                </form>
+              ) : (
+                <div className="mt-4">
+                  <a
+                    href="https://drive.google.com/file/d/1zk-e2UyvH02nJmtgkqmPGzzHdlPtkCGO/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center px-5 py-3 rounded-full bg-lynx-pink text-white font-semibold hover:bg-lynx-pink-hover transition shadow-[0_0_14px_#ff2e9a55] hover:shadow-[0_0_20px_#ff2e9a77]"
+                  >
+                    Open “Requirements & Offer”
+                  </a>
+                  <p className="text-xs text-gray-400 mt-3 text-center">
+                    Link unlocked for {requirementsEmail}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section id="how" className="section-padding py-16" data-animate>
         <div data-animate className="container-width max-w-4xl opacity-0 translate-y-4 transition-all duration-700 text-center mx-auto">
           <span className="inline-block text-lynx-pink font-semibold tracking-wide uppercase border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1 shadow-[0_0_24px_#ff2e9a22]">How it works</span>
           <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white">From repetitive to automated</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Problem */}
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <div className="inline-flex items-center gap-2 text-lynx-pink font-semibold uppercase text-xs tracking-wide">
-                <span>Problem</span>
+            {/* BEFORE */}
+            <div className="p-6 rounded-2xl border border-red-500/30 bg-red-500/5 ring-1 ring-red-500/10 transition-transform duration-300 hover:-translate-y-1 hover:border-red-500/50">
+              <div className="inline-flex items-center gap-2 text-red-300 font-semibold uppercase text-xs tracking-wide">
+                <span className="px-2 py-0.5 rounded-full bg-red-500/10 border border-red-500/30">Before</span>
+                <span className="opacity-80">Traditional flat-fee porting</span>
               </div>
-              <h3 className="mt-2 text-white font-bold text-lg">Console ports are costly and slow</h3>
-              <ul className="mt-3 space-y-2 text-gray-300 text-sm list-disc list-inside">
-                <li>Hard‑to‑find know‑how and scattered docs</li>
-                <li>Repetitive work across platforms</li>
-                <li>Unclear steps to reach certification</li>
+              <h3 className="mt-2 text-white font-bold text-lg">High friction. Slow. Risky.</h3>
+              <ul className="mt-3 space-y-2 text-gray-300 text-sm">
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>Large upfront cost that needs budget approval</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>Long scoping phase before you even get started</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>Constant requests to your dev team</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>Unpredictable certification issues</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>Timelines that slip because internal teams get busy</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">❌</span><span>High friction, high commitment</span></li>
               </ul>
             </div>
-            {/* Solution */}
+            {/* AFTER */}
             <div className="p-6 rounded-2xl border border-lynx-pink/40 bg-lynx-dark/60 ring-1 ring-lynx-pink/20 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/60 hover:shadow-[0_0_28px_#ff2e9a33]">
               <div className="inline-flex items-center gap-2 text-lynx-pink font-semibold uppercase text-xs tracking-wide">
-                <span>Solution</span>
+                <span className="px-2 py-0.5 rounded-full bg-lynx-pink/10 border border-lynx-pink/40">After</span>
+                <span className="opacity-90">EasyGamePort</span>
               </div>
-              <h3 className="mt-2 text-white font-bold text-lg">Automate the repetitive, ship faster</h3>
-              <ul className="mt-3 space-y-2 text-gray-300 text-sm list-disc list-inside">
-                <li>Open‑source plugin for Unity & Unreal</li>
-                <li>Auto implementation: save system, input, achievements/trophies, consoles activities</li>
-                <li>Build in step by step process list</li>
+              <h3 className="mt-2 text-white font-bold text-lg">Low friction. Fast. Predictable.</h3>
+              <ul className="mt-3 space-y-2 text-gray-300 text-sm">
+                <li className="flex items-start gap-2"><span className="mt-0.5">✅</span><span>Minimal upfront cost</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">✅</span><span>No load on your internal dev team</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">✅</span><span>Fast evaluation and predictable milestones</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">✅</span><span>Certification and release management fully handled</span></li>
+                <li className="flex items-start gap-2"><span className="mt-0.5">✅</span><span>Low friction, low commitment, high speed</span></li>
               </ul>
             </div>
           </div>
@@ -263,53 +442,30 @@ const EasyGamePort = () => {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_18px_#ff2e9a22]">
               <p className="text-xs text-lynx-pink font-semibold uppercase tracking-wide">Step 1</p>
-              <p className="text-white font-medium mt-1">Install & select target platform</p>
-              <p className="text-gray-300 text-sm mt-1">Add the plugin, choose PlayStation, Xbox or Switch presets.</p>
+              <p className="text-white font-medium mt-1">Automate porting</p>
+              <p className="text-gray-300 text-sm mt-1">We automate saves, input, achievements, activities and haptics across all target platforms.</p>
             </div>
             <div className="p-4 rounded-xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_18px_#ff2e9a22]">
               <p className="text-xs text-lynx-pink font-semibold uppercase tracking-wide">Step 2</p>
-              <p className="text-white font-medium mt-1">Auto‑implement essentials</p>
-              <p className="text-gray-300 text-sm mt-1">Save, input, achievements, activities and vibrations add in one step.</p>
+              <p className="text-white font-medium mt-1">Certification & release</p>
+              <p className="text-gray-300 text-sm mt-1">We prepare builds, run compliance checks and de‑risk TRC/XR issues early to keep you on schedule.</p>
             </div>
             <div className="p-4 rounded-xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_18px_#ff2e9a22]">
               <p className="text-xs text-lynx-pink font-semibold uppercase tracking-wide">Step 3</p>
-              <p className="text-white font-medium mt-1">Build towards certification</p>
-              <p className="text-gray-300 text-sm mt-1">Follow the checklist - iterate to stability and performance.</p>
+              <p className="text-white font-medium mt-1">Release management</p>
+              <p className="text-gray-300 text-sm mt-1">We manage submissions, store assets and updates, coordinating timelines for a smooth launch.</p>
             </div>
           </div>
 
           <div className="mt-8 p-6 rounded-2xl border border-lynx-pink/40 bg-lynx-dark/60 shadow-[0_0_24px_#ff2e9a22]">
             <p className="text-white font-semibold leading-relaxed text-center">
-              In easy words: One open‑source plugin that lets your team port games cheaper, faster,
-              and without prior porting experience.
+              In short: we use EasyGamePort in our porting work so you avoid a large upfront flat fee — shipping to consoles faster and with lower initial cost.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Who is it for? */}
-      <section className="section-padding py-12" data-animate>
-        <div data-animate className="container-width max-w-5xl opacity-0 translate-y-4 transition-all duration-700 text-center mx-auto">
-          <span className="inline-block text-lynx-pink font-semibold tracking-wide uppercase border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1 shadow-[0_0_24px_#ff2e9a22]">Who is it for</span>
-          <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-white">Works for both devs and publishers</h3>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">Developers</h4>
-              <p className="text-gray-300 mt-2 text-sm">
-                For indie/solo creators and larger independent studios who want to release on new
-                platforms without a huge upfront cost — while keeping full control over their game.
-              </p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">Publishers</h4>
-              <p className="text-gray-300 mt-2 text-sm">
-                For game publishers releasing multiple titles who want to reduce porting costs and
-                accelerate time‑to‑market.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Newsletter + Discord community */}
       <section className="section-padding py-16" data-animate>
@@ -1322,39 +1478,7 @@ const EasyGamePort = () => {
         </div>
       </section>
 
-      {/* Key details grid */}
-      <section className="section-padding py-12" data-animate>
-        <div data-animate className="container-width max-w-5xl opacity-0 translate-y-4 transition-all duration-700 text-center mx-auto">
-          <span className="inline-block text-lynx-pink font-semibold tracking-wide uppercase border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1 shadow-[0_0_24px_#ff2e9a22]">Key details</span>
-          <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-white">What you get out‑of‑the‑box</h3>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">AI‑first platform</h4>
-              <p className="text-gray-300 mt-2 text-sm">Built‑in AI agent that guides setup, checks requirements and handles details.</p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-transform duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-              <h4 className="text-white font-semibold">Save system and slot management</h4>
-              <p className="text-gray-300 mt-2 text-sm">Robust save/load with profiles, compliant paths and size limits baked in.</p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Controller input mapping</h4>
-              <p className="text-gray-300 mt-2 text-sm">Unified input layer with rumble, glyphs and deadzone presets out of the box.</p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Achievements / Trophies scaffolding</h4>
-              <p className="text-gray-300 mt-2 text-sm">Ready-to-wire events, IDs and UI helpers to integrate fast.</p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Console activities & presence</h4>
-              <p className="text-gray-300 mt-2 text-sm">Hooks for activities, rich presence and platform-specific UX signals.</p>
-            </div>
-            <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 hover:border-lynx-pink/40 transition">
-              <h4 className="text-white font-semibold">Certification checklist helpers</h4>
-              <p className="text-gray-300 mt-2 text-sm">Step‑by‑step checks and guards to help you pass TRC/XR/LOT.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       
 
@@ -1366,15 +1490,14 @@ const EasyGamePort = () => {
         <div data-animate className="container-width max-w-4xl text-center mx-auto opacity-0 translate-y-4 transition-all duration-700">
           <p className="text-lynx-pink font-semibold tracking-wide uppercase">Special offer</p>
           <h3 className="mt-3 text-3xl md:text-5xl font-extrabold text-white leading-tight">
-            Right now we offer free ports — let’s connect!
+            Let’s talk about your port.
           </h3>
           <p className="mt-4 text-gray-300 md:text-lg max-w-3xl mx-auto">
-            We’re onboarding early teams to validate EasyGamePort at scale. If your title is a good
-            fit, we’ll help you bring it to consoles at no cost.
+            We’re onboarding teams and using EasyGamePort to reduce upfront costs for publishers and studios while accelerating delivery.
           </p>
           <div className="mt-8 flex justify-center">
             <a href="#apply" className="px-7 py-3 rounded-full bg-lynx-pink text-white font-semibold hover:bg-lynx-pink-hover transition shadow-[0_0_14px_#ff2e9a55] hover:shadow-[0_0_20px_#ff2e9a77]">
-              Apply for the free port
+              Apply for port
             </a>
           </div>
         </div>
@@ -1383,21 +1506,59 @@ const EasyGamePort = () => {
       {/* Requirements + Contact form */}
       <section className="section-padding pb-20 pt-2" data-animate>
         <div data-animate className="container-width max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 opacity-0 translate-y-4 transition-all duration-700">
-          <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22]">
-            <h4 className="text-white font-bold text-lg">Requirements</h4>
-            <ul className="mt-3 space-y-2 text-gray-300 text-sm list-disc list-inside">
-              <li>Unity or Unreal engine</li>
-              <li>Release game on Steam or one of the consoles</li>
-              <li>Implemented controls using Rewired, Unity Input System or Unreal Input System</li>
-              <li>No multiplayer or crossplay features</li>
-              <li>No need to optimize</li>
-              <li>No major bugs or crashes in the build</li>
-            </ul>
-            <p className="text-gray-400 text-sm mt-4">Don’t worry if you don’t complete all the requirements, feel free to apply and we'll discuss the details.</p>
+          <div className="p-6 rounded-2xl border border-lynx-pink/20 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/40 hover:shadow-[0_0_24px_#ff2e9a22] relative overflow-hidden ring-1 ring-lynx-pink/15">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-br from-lynx-pink/10 via-transparent to-white/5" />
+            <div aria-hidden="true" className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full bg-lynx-pink/30 blur-3xl opacity-30" />
+            <div className="relative">
+              <span className="inline-block text-lynx-pink font-semibold tracking-wide uppercase border border-lynx-pink/40 bg-lynx-pink/10 rounded-full px-3 py-1 shadow-[0_0_24px_#ff2e9a22]">Requirements & Offer</span>
+              <div className="mt-3">
+                <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white">📄</div>
+                <h4 className="text-white font-extrabold text-lg">What’s inside</h4>
+                <p className="mt-2 text-gray-300 text-sm">
+                  A concise PDF with platform requirements, a readiness checklist, timelines and how we’ll work together — everything you need to plan a smooth console launch.
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">Requirements</span>
+                  <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">Checklist</span>
+                  <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">Timeline</span>
+                  <span className="px-2.5 py-1 rounded-full text-xs bg-white/10 text-white border border-white/15">Collab model</span>
+                </div>
+                <p className="mt-3 text-gray-400 text-xs">
+                  Not sure you meet everything? No worries — we’ll review together and help you get there.
+                </p>
+              </div>
+              <div className="mt-4 rounded-xl overflow-hidden border border-white/10 bg-black/20 relative">
+                <img
+                  src="/lovable-uploads/image copy.png"
+                  alt="Requirements & Offer preview"
+                  className="w-full h-48 object-cover opacity-90 grayscale hover:grayscale-0 transition"
+                  loading="lazy"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/lovable-uploads/gamescom_blogphoto.webp'; }}
+                />
+                {!requirementsUnlocked && (
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex items-center justify-center">
+                    <div className="text-center px-6">
+                      <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white animate-pulse">🔒</div>
+                      <p className="text-white font-semibold">Locked</p>
+                      <p className="text-gray-200/80 text-xs mt-1">Enter your email below to unlock the Requirements & Offer</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="mt-5">
+                <a
+                  href="#requirements-offer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-lynx-pink text-white font-semibold hover:bg-lynx-pink-hover transition shadow-[0_0_14px_#ff2e9a55] hover:shadow-[0_0_20px_#ff2e9a77]"
+                >
+                  View Requirements & Offer <span aria-hidden="true">→</span>
+                </a>
+                <p className="text-gray-400 text-xs mt-2">Instant access after email. No spam.</p>
+              </div>
+            </div>
           </div>
 
           <div id="apply" className="p-6 rounded-2xl border border-lynx-pink/30 bg-lynx-dark/60 transition-all duration-300 hover:-translate-y-1 hover:border-lynx-pink/50 hover:shadow-[0_0_28px_#ff2e9a33]">
-            <h4 className="text-white font-bold text-lg">Apply for the free port</h4>
+            <h4 className="text-white font-bold text-lg">Apply for a port</h4>
             <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="text-sm text-gray-300">Your name</label>
@@ -1424,7 +1585,7 @@ const EasyGamePort = () => {
                 <label className="text-sm text-gray-300">Game & engine</label>
                 <Input
                   className="mt-1 bg-white text-gray-900"
-                  placeholder="Project name — Unity 2022.3 / Unreal 5.4"
+                  placeholder="Project name — Unity / Unreal"
                   value={game}
                   onChange={(e) => setGame(e.target.value)}
                 />
